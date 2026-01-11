@@ -66,7 +66,7 @@ exports.loginFarmer = async (req,res) =>{
       }
 
       res.status(200).json({
-      id:farmer._id,
+      _id:farmer._id,
       name: farmer.name,
       email: farmer.email,
       token: generateToken(farmer._id),

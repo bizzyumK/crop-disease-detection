@@ -18,7 +18,7 @@ const protect = async (req,res,next)=>{
 
       const decoded = jwt.verify(token,process.env.JWT_SECRET);
 
-      req.farmer= await Farmer.findById(decoded.id).select('-password');
+      req.farmer = await Farmer.findById(decoded.id).select('-password');
       next();
 
     } catch(error){
@@ -29,7 +29,7 @@ const protect = async (req,res,next)=>{
   }
 
   if(!token){
-    res.status(401).json({message: "Not authorized , no token!"})
+    return res.status(401).json({message: "Not authorized , no token!"})
   }
 };
 
