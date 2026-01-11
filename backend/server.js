@@ -2,6 +2,7 @@ const express = require ('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const imageRoutes = require('./routes/images');
 
 dotenv.config(); //load environment variables
 
@@ -17,6 +18,8 @@ app.use('/api/auth',require('./routes/auth'));
 app.get('/',(req,res)=>{
   res.send({message: 'Hello World!'});
 });
+
+app.use('/api/images',imageRoutes);
 
 
 mongoose

@@ -13,19 +13,18 @@ const farmerSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
+     match: [/^[\w.%+-]+@[\w.-]+\.[A-Za-z]{2,}$/
+, "Invalid email format"] 
   },
 
   password: {
     type: String,
+    match: [
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/,"Invalid PWD Format"],
     required: true,
   },
 
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  }
-
-});
+},{timestamps:true});
 
 
 //hashing before saving
