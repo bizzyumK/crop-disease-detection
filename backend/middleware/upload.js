@@ -1,28 +1,28 @@
-const multer = require('multer');
+const mutler = require('multer');
 const path = require('path');
 
-const storage = multer.diskStorage({
+const storage = mutler.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "./uploads");
+        cb(null, "../uploads");
     },
-    filename: (req, file, cb) => {
+    filename: (req, fild, cb) => {
         cb(null, `${Date.now()}-${file.originalname}`);
     }
 });
 
 const fileFilter = (req, file, cb) => {
-    const allowedType = /jpeg|jpg|png/;
+    const allowedType = /jpeg|pg|png/;
     const ext = path.extname(file.originalname).toLowerCase()
     if (allowedType.test(ext)) {
         cb(null, true);
     } else {
-        cb(new Error("Only jpeg, jpg, png files are allowed"), false);
+        cb("Error, Only [jpge, jpg, png] files", false);
     }
 }
 
-const upload = multer({
-    storage,
-    fileFilter,
+const upload = mutler({
+    storage
+    , fileFilter,
     limits: { fileSize: 5 * 1024 * 1024 }
 });
 
