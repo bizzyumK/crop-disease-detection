@@ -3,46 +3,49 @@ const fs = require("fs");
 const axios = require("axios");
 const FormData = require("form-data");
 
+// Get all user images
 const getImages = async (req, res) => {
   try {
     const userId = req.user.id;
     const images = await Image.find({ user: userId });
     return res.status(200).json(images);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    return res.status(500).json({ message: err.message });
   }
 };
 
-// Upload image and call ML API
+// Upload image + Call ML API
 const uploadImage = async (req, res) => {
   try {
+    const userId = req.user.id;
+
     if (!req.file) {
       return res.status(400).json({ message: "No file uploaded" });
     }
 
-    const userId = req.user.id;
-    if (!userId)
-      return res.status(401).json({ message: "User Id is required" });
-
-    // Store data in DB with temporary diseaseDetected
+    // 1️⃣ Store image with pending status
     let image = await Image.create({
       user: userId,
       imageUrl: req.file.path,
       diseaseDetected: "pending",
     });
 
-    // Prepare image for FastAPI
+    // 2️⃣ Prepare image for ML API
     const form = new FormData();
     form.append("file", fs.createReadStream(req.file.path));
 
-    // Call FastAPI ML API
-    const response = await axios.post("https://subodhdhamala-greenbidu.hf.space/predict/", form, {
-      headers: form.getHeaders(),
-    });
+    // 3️⃣ Call FastAPI ML endpoint
+    const response = await axios.post(
+      "https://subodhdhamala-greenbidu.hf.space/predict/",
+      form,
+      {
+        headers: form.getHeaders(),
+      }
+    );
 
     const mlResult = response.data;
 
-    // Update image with prediction
+    // 4️⃣ Update image with prediction
     image.diseaseDetected = mlResult.disease || "unknown";
     await image.save();
 
@@ -51,9 +54,14 @@ const uploadImage = async (req, res) => {
       image,
       mlResult,
     });
+
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: err.message });
+
+    return res.status(500).json({
+      message: "Upload or ML prediction failed",
+      error: err.message,
+    });
   }
 };
 
@@ -61,30 +69,34 @@ const uploadImage = async (req, res) => {
 const deleteImage = async (req, res) => {
   try {
     const imageId = req.params.id;
-    if (!imageId)
-      return res.status(404).json({ message: "Id params is required" });
+
+    if (!imageId) {
+      return res.status(400).json({ message: "Image ID is required" });
+    }
 
     const image = await Image.findById(imageId);
     if (!image) {
       return res.status(404).json({ message: "Image not found" });
     }
 
-    // Delete file from ./uploads
+    // Delete physical file
     fs.unlink(image.imageUrl, (err) => {
       if (err) {
-        return res.json({
-          message: "An error occurred while deleting file: " + err,
-        });
+        console.error("File deletion error:", err);
       }
-      console.log("Image deleted");
     });
 
     await image.deleteOne();
 
-    return res.json({ message: "File deleted successfully" });
+    return res.status(200).json({ message: "File deleted successfully" });
+
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    return res.status(500).json({ message: err.message });
   }
 };
 
-module.exports = { getImages, uploadImage, deleteImage };
+module.exports = {
+  getImages,
+  uploadImage,
+  deleteImage,
+};
