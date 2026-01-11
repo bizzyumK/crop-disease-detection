@@ -1,19 +1,8 @@
-const Image = require("../models/Images.js");
-const fs = require("fs");
-const axios = require("axios");
-const FormData = require("form-data");
+const Image = require('../models/Images.js');
 
-// Get all user images
 const getImages = async (req, res) => {
-  try {
-    const userId = req.user.id;
-    const images = await Image.find({ user: userId });
-    return res.status(200).json(images);
-  } catch (err) {
-    return res.status(500).json({ message: err.message });
-  }
-};
-
+    res.json({ message: "Hello world" });
+}
 // Upload image + Call ML API
 const uploadImage = async (req, res) => {
   try {
