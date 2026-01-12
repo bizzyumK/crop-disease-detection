@@ -57,12 +57,12 @@ exports.loginFarmer = async (req,res) =>{
     //find by email
     const farmer = await Farmer.findOne({email});
     if(!farmer){
-      return res.status(400).json({message: "Invalid Email!"});
+      return res.status(400).json({message: "Invalid Credentials!"});
     }
 
     const isMatch = await farmer.matchPassword(password);
       if(!isMatch){
-        return res.status(400).json({message: "Invalid Password!"});
+        return res.status(400).json({message: "Invalid Credentials!"});
       }
 
       res.status(200).json({
