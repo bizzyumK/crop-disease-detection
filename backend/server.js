@@ -16,11 +16,11 @@ app.use('/uploads', express.static('uploads'));
 //routes
 app.use('/api/auth',require('./routes/auth'));
 app.use('/api/images',imageRoutes);
+app.use('/api/advisory',require('./routes/advisory'));
 
 app.get('/',(req,res)=>{
   res.send({message: 'Hello World!'});
 });
-
 
 mongoose
 .connect(process.env.MONGO_URI)
