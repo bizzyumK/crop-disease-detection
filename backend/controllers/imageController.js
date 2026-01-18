@@ -1,110 +1,74 @@
 const Image = require('../models/Images.js');
 const fs = require('fs');
+const path = require('path');
 
+// Get all images for logged-in farmer
 const getImages = async (req, res) => {
   try {
-    const farmerId = req.user.id;
-    const images = await Image.find({ farmer: farmerId });
+    const images = await Image.find({ farmer: req.farmer._id })
+      .sort({ createdAt: -1 });
+
     return res.status(200).json(images);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
   }
-}
-// Upload image + Call ML API
+};
+
+// Upload image
 const uploadImage = async (req, res) => {
   try {
-    const userId = req.user.id;
+    if (!req.file) {
+      return res.status(400).json({ error: 'No file uploaded!' });
+    }
 
-    const farmerId = req.user.id;
-    if (!farmerId) return res.status(401).json({ message: "Farmer Id is required" });
-
-    //Store data in DB 
     const image = await Image.create({
-      farmer: farmerId,
-      imageUrl: req.file.path,
-      diseaseDetected: "pending"
+      farmer: req.farmer._id,
+      imageUrl: `/uploads/${req.file.filename}`,
+      diseaseDetected: 'pending'
     });
 
-    return res.status(200).json({ message: 'Image uploaded successfully', image });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    return res.status(201).json({
+      message: 'Image uploaded successfully!',
+      image
+    });
+
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
   }
+};
 
-  // 1️⃣ Store image with pending status
-  let image = await Image.create({
-    user: userId,
-    imageUrl: req.file.path,
-    diseaseDetected: "pending",
-  });
-
-  // 2️⃣ Prepare image for ML API
-  const form = new FormData();
-  form.append("file", fs.createReadStream(req.file.path));
-
-  // 3️⃣ Call FastAPI ML endpoint
-  const response = await axios.post(
-    "https://subodhdhamala-greenbidu.hf.space/predict/",
-    form,
-    {
-      headers: form.getHeaders(),
-    }
-  );
-
-  const mlResult = response.data;
-
-  // 4️⃣ Update image with prediction
-  image.diseaseDetected = mlResult.disease || "unknown";
-  await image.save();
-
-  return res.status(200).json({
-    message: "Image uploaded successfully",
-    image,
-    mlResult,
-  });
-
-}
 // Delete image
 const deleteImage = async (req, res) => {
   try {
-    const imageId = req.params.id;
-    if (!imageId) return res.status(404).json({ message: "Id params not should" });
+    const image = await Image.findById(req.params.id);
 
-    const image = await Image.findById(imageId);
     if (!image) {
-      return res.status(404).json({ message: "Image not found" });
+      return res.status(404).json({ message: 'Image not found!' });
     }
 
-    //Delete file from ./uploads
-    fs.unlink(image.imageUrl, (err) => {
+    // Check ownership
+    if (image.farmer.toString() !== req.farmer._id.toString()) {
+      return res.status(401).json({ message: 'Not authorized!' });
+    }
+
+    // Build correct file path
+    const filePath = path.join(__dirname, '..', image.imageUrl);
+
+    // Delete physical file
+    fs.unlink(filePath, (err) => {
       if (err) {
-        return res.json({ message: "An error occure while deleting file ," + err });
+        console.error('File delete error:', err);
       }
-      console.log("Image deleted");
     });
 
     await image.deleteOne();
 
-    return res.json({ message: "File deleted Sucessfull" });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    return res.status(200).json({ message: 'Image deleted successfully!' });
+
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
   }
-}
-
-const image = await Image.findById(imageId);
-if (!image) {
-  return res.status(404).json({ message: "Image not found" });
-}
-
-// Delete physical file
-fs.unlink(image.imageUrl, (err) => {
-  if (err) {
-    console.error("File deletion error:", err);
-  }
-});
-
-await image.deleteOne();
-
-return res.status(200).json({ message: "File deleted successfully" });
+};
 
 module.exports = {
   getImages,
