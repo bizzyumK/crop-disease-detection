@@ -1,17 +1,15 @@
-const mongoose = require ('mongoose');
+const mongoose = require('mongoose');
 
 const advisorySchema = new mongoose.Schema({
-  
   disease: {
     type: String,
     required: true,
-    unique: true,
+    unique: true
   },
-
-  advice:{
+  advice: {
     type: String,
-    required: true,
-  },
-},{timestamps:true});
+    required: true
+  }
+}, { timestamps: true });
 
-module.exports = mongoose.model('Advisory',advisorySchema);
+module.exports = mongoose.model('Advisory', advisorySchema);
