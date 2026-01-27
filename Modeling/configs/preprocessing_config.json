@@ -1,0 +1,54 @@
+{
+  "dataset": {
+    "train_dir": "Modeling/Crop Disease Dataset/train",
+    "valid_dir": "Modeling/Crop Disease Dataset/valid",
+    "test_dir": "Modeling/Crop Disease Dataset/test",
+    "total_classes": 13,
+    "train_samples": 74880,
+    "valid_samples": 19804
+  },
+  "image": {
+    "size": [
+      224,
+      224
+    ],
+    "color_mode": "rgb",
+    "normalization": "1./255"
+  },
+  "training": {
+    "batch_size": 32,
+    "steps_per_epoch": 2340,
+    "validation_steps": 618
+  },
+  "augmentation": {
+    "train": {
+      "rotation_range": 25,
+      "zoom_range": 0.2,
+      "horizontal_flip": true,
+      "brightness_range": [
+        0.8,
+        1.2
+      ],
+      "width_shift_range": 0.1,
+      "height_shift_range": 0.1,
+      "fill_mode": "nearest"
+    },
+    "validation_test": {
+      "augmentation": "none",
+      "only_rescale": true
+    }
+  },
+  "generator": {
+    "class_mode": "categorical",
+    "shuffle": {
+      "train": true,
+      "validation": false
+    },
+    "seed": 42
+  },
+  "metadata": {
+    "creation_date": "2026-01-27 16:40:49.269665",
+    "tensorflow_version": "2.19.0",
+    "keras_version": "3.10.0"
+  }
+}
