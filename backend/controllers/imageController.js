@@ -1,81 +1,68 @@
-const Image = require('../models/Image');
-const fs = require('fs');
-const path = require('path');
+const Image = require("../models/Images.js");
+const fs = require("fs");
 
-const getImages = async (req,res)=>{
-  try{
-    const images = await Image.find({farmer: req.farmer._id});
-    res.status(200).json(images);
-
-  }catch(error){
-    res.status(500).json({error: error.message});
+const getImages = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const images = await Image.find({ user: userId });
+    return res.status(200).json(images);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 };
 
-const uploadImage = async (req,res)=>{
-  try{
-    const file = req.file;
-
-    if(!file){
-      return res.status(400).json({error: 'No file Uploaded!'});
+const uploadImage = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ message: "No file uploaded" });
     }
 
-    const image = new Image({
-      farmer: req.farmer._id,
-      imageUrl : `/uploads/${req.file.filename}`,
+    const userId = req.user.id;
+    if (!userId)
+      return res.status(401).json({ message: "User Id is required" });
+
+    //Store data in DB
+    const image = await Image.create({
+      user: userId,
+      imageUrl: req.file.path,
+      diseaseDetected: "pending",
     });
 
-    await image.save();
-
-    res.status(201).json({message: "Image uploaded successfully! ", image})
-
-  }catch(error){
-    res.status(500).json({error:error.message});
+    return res
+      .status(200)
+      .json({ message: "Image uploaded successfully", image });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 };
 
-const deleteImage = async (req,res)=>{
-  try{
-    
-    const image = await Image.findById(req.params.id);
+const deleteImage = async (req, res) => {
+  try {
+    const imageId = req.params.id;
+    if (!imageId)
+      return res.status(404).json({ message: "Id params not should" });
 
-    if(!image){
-      return res.status(404).json({message: 'Image not found!'});
+    const image = await Image.findById(imageId);
+    if (!image) {
+      return res.status(404).json({ message: "Image not found" });
     }
 
-
-    //ensure owner
-    if (image.farmer.toString() !== req.farmer._id.toString()){
-      return res.status(401).json({message: 'Not authorized!'});
-    };
-    
-
-    //remove file from uploads folder
-    const filePath = path.join(__dirname,'..',image.imageUrl);
-    fs.unlink(filePath,(err)=>{
-      if(err){
-        console.error('Failed to delete image file! ', err);
+    //Delete file from ./uploads
+    fs.unlink(image.imageUrl, (err) => {
+      if (err) {
+        return res.json({
+          message: "An error occure while deleting file ," + err,
+        });
       }
+      console.log("Image deleted");
+    });
 
-      else{
-        console.log('Image file deleted!', filePath)
-      }
-    })
-
-
-    //remove record from MongoDB
     await image.deleteOne();
 
-    res.status(200).json({message:'Image deleted successfully! '});
-
-
-  }catch(err){
-    res.status(500).json({error: err.message})
+    return res.json({ message: "File deleted Sucessfull" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 };
 
-module.exports = {
-  getImages,
-  uploadImage,
-  deleteImage
-};
+module.exports = { getImages, uploadImage, deleteImage };
