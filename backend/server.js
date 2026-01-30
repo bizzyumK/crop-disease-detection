@@ -1,7 +1,7 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const connectDB = require('./config/db');
 
 dotenv.config(); //load environment variables
 
@@ -14,11 +14,6 @@ app.use(express.json());
 //routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/images', require('./routes/images'));
-
-mongoose
-    .connect(process.env.MONGO_URI)
-    .then(() => console.log("MongoDB Connected!"))
-    .catch((err) => console.error(err));
 
 const PORT = process.env.PORT || 5000;
 
