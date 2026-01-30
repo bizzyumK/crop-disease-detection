@@ -1,0 +1,566 @@
+{
+  "advisory_system": {
+    "metadata": {
+      "version": "1.0",
+      "created": "2024-01-20",
+      "languages": ["English", "Nepali"],
+      "total_diseases": 45,
+      "total_crops": 14
+    },
+    "diseases": {
+      "Apple__Apple_scab": {
+        "crop": "Apple",
+        "crop_nepali": "स्याउ",
+        "disease": "Apple Scab",
+        "disease_nepali": "स्याउको खराबी",
+        "severity": "High",
+        "severity_emoji": "🔴",
+        "crop_emoji": "🍎",
+        "symptoms": {
+          "english": [
+            "Olive-green to black spots on leaves",
+            "Velvety lesions on leaf undersides",
+            "Fruit deformation and cracking",
+            "Premature leaf drop"
+          ],
+          "nepali": [
+            "पातमा जैतून-हरियो देखि कालो दागहरू",
+            "पातको तल्लो भागमा मखमली घाउहरू",
+            "फलमा विकृति र चिराहरू",
+            "अकाल पात झर्ने"
+          ]
+        },
+        "causes": {
+          "english": [
+            "Fungus: Venturia inaequalis",
+            "Cool, wet spring weather (12-24°C)",
+            "Poor air circulation",
+            "Overhead irrigation"
+          ],
+          "nepali": [
+            "कवक: भेन्टुरिया इनेक्वालिस",
+            "चिसो, गीला बसन्त मौसम (१२-२४°C)",
+            "खराब हावा संचलन",
+            "माथिबाट सिँचाइ"
+          ]
+        },
+        "prevention": {
+          "english": [
+            "🍃 Plant resistant varieties (Liberty, Freedom)",
+            "✂️ Prune trees for better air circulation",
+            "🧹 Remove fallen leaves in autumn",
+            "💧 Use drip irrigation instead of overhead",
+            "📏 Maintain proper spacing (4-5m between trees)"
+          ],
+          "nepali": [
+            "🍃 प्रतिरोधी किसिमको रोप्नुहोस् (लिबर्टी, फ्रिडम)",
+            "✂️ राम्रो हावा संचलनको लागि रूख काट्नुहोस्",
+            "🧹 शरद ऋतुमा झरेका पातहरू हटाउनुहोस्",
+            "💧 माथिबाट सिँचाइको सट्टा ड्रिप सिँचाइ प्रयोग गर्नुहोस्",
+            "📏 उचित दूरी राख्नुहोस् (रूखहरू बीच ४-५ मिटर)"
+          ]
+        },
+        "treatment_procedure": {
+          "step_by_step": {
+            "english": [
+              "1. 🗑️ Remove and destroy infected leaves",
+              "2. 🧴 Apply fungicide at green tip stage",
+              "3. 🔁 Repeat at pink bud and petal fall stages",
+              "4. 🩺 Monitor every 7-10 days during growing season",
+              "5. 🌿 Apply organic treatments weekly if using"
+            ],
+            "nepali": [
+              "१. 🗑️ संक्रमित पातहरू हटाएर नष्ट गर्नुहोस्",
+              "२. 🧴 हरियो टुप्पो अवस्थामा फन्जिसाइड लगाउनुहोस्",
+              "३. 🔁 गुलाफी कलिका र पुष्पपात अवस्थामा दोहोर्याउनुहोस्",
+              "४. 🩺 बढ्दो मौसममा हरेक ७-१० दिनमा निगरानी गर्नुहोस्",
+              "५. 🌿 जैविक उपचार प्रयोग गर्दा साप्ताहिक लगाउनुहोस्"
+            ]
+          }
+        },
+        "fungicides": {
+          "chemical": [
+            {
+              "name": "Myclobutanil",
+              "dosage": "100ml per 100L water",
+              "application": "Spray at 14-day intervals",
+              "safety_period": "21 days before harvest"
+            },
+            {
+              "name": "Trifloxystrobin",
+              "dosage": "50g per 100L water",
+              "application": "Spray at bud break stage",
+              "safety_period": "14 days before harvest"
+            },
+            {
+              "name": "Captan",
+              "dosage": "150g per 100L water",
+              "application": "Protective spray every 10-14 days",
+              "safety_period": "7 days before harvest"
+            }
+          ],
+          "organic": [
+            {
+              "name": "Baking Soda Spray",
+              "recipe": "1 tablespoon baking soda + 1 teaspoon vegetable oil + 1 gallon water",
+              "application": "Spray weekly during wet weather",
+              "effectiveness": "Good for prevention"
+            },
+            {
+              "name": "Neem Oil",
+              "recipe": "2 tablespoons neem oil + 1 gallon water",
+              "application": "Spray every 7-10 days",
+              "effectiveness": "Moderate control"
+            },
+            {
+              "name": "Copper Soap Fungicide",
+              "recipe": "Ready-to-use product",
+              "application": "Follow label instructions",
+              "effectiveness": "Good control"
+            }
+          ]
+        },
+        "immediate_actions": {
+          "english": [
+            "⚠️ Isolate infected trees immediately",
+            "🧤 Wear gloves when handling infected material",
+            "🔥 Burn or bury infected leaves (don't compost)",
+            "💊 Start fungicide treatment within 24 hours of detection"
+          ],
+          "nepali": [
+            "⚠️ संक्रमित रूखहरू तुरुन्तै अलग गर्नुहोस्",
+            "🧤 संक्रमित सामग्री ह्यान्डल गर्दा हातेला लगाउनुहोस्",
+            "🔥 संक्रमित पातहरू जलाउनुहोस् वा गाड्नुहोस् (कम्पोस्ट नगर्नुहोस्)",
+            "💊 पत्ता लागेको २४ घण्टाभित्र फन्जिसाइड उपचार सुरु गर्नुहोस्"
+          ]
+        },
+        "recovery_time": {
+          "english": "4-6 weeks with proper treatment",
+          "nepali": "उचित उपचारसँग ४-६ हप्ता"
+        },
+        "yield_impact": {
+          "english": "20-40% reduction if untreated",
+          "nepali": "उपचार नगरेमा २०-४०% घट्ने"
+        },
+        "expert_contact": {
+          "english": "Contact local agricultural extension office",
+          "nepali": "स्थानिय कृषि विस्तार कार्यालयसँग सम्पर्क गर्नुहोस्"
+        }
+      },
+
+      "Apple__Black_rot": {
+        "crop": "Apple",
+        "crop_nepali": "स्याउ",
+        "disease": "Black Rot",
+        "disease_nepali": "कालो सडन",
+        "severity": "Medium",
+        "severity_emoji": "🟠",
+        "crop_emoji": "🍎",
+        "symptoms": {
+          "english": [
+            "Brown circular spots with concentric rings",
+            "Fruit rot with black pycnidia",
+            "Cankers on branches"
+          ],
+          "nepali": [
+            "केन्द्रित वलय भएका खैरो गोलाकार दागहरू",
+            "कालो पाइक्निडिया भएको फल सडन",
+            "हाँगामा क्याङ्करहरू"
+          ]
+        },
+        "treatment_procedure": {
+          "step_by_step": {
+            "english": [
+              "1. ✂️ Prune infected branches 15cm below canker",
+              "2. 🧴 Apply copper fungicide",
+              "3. 🗑️ Remove mummified fruits",
+              "4. 🔁 Repeat treatment every 14 days"
+            ],
+            "nepali": [
+              "१. ✂️ क्याङ्करभन्दा १५ सेमी तल संक्रमित हाँगा काट्नुहोस्",
+              "२. 🧴 कपर फन्जिसाइड लगाउनुहोस्",
+              "३. 🗑️ ममीकृत फलहरू हटाउनुहोस्",
+              "४. 🔁 हरेक १४ दिनमा उपचार दोहोर्याउनुहोस्"
+            ]
+          }
+        },
+        "fungicides": {
+          "chemical": [
+            {
+              "name": "Thiophanate-methyl",
+              "dosage": "70g per 100L water",
+              "application": "Spray at petal fall"
+            }
+          ]
+        }
+      },
+
+      "Apple__Cedar_apple_rust": {
+        "crop": "Apple",
+        "crop_nepali": "स्याउ",
+        "disease": "Cedar Apple Rust",
+        "disease_nepali": "देवदार स्याउ गेरू",
+        "severity": "Medium",
+        "severity_emoji": "🟠",
+        "crop_emoji": "🍎🌲",
+        "special_note": {
+          "english": "⚠️ This disease requires juniper/cedar trees as alternate host",
+          "nepali": "⚠️ यो रोगलाई वैकल्पिक होस्टको रूपमा जुनिपर/देवदार रूख चाहिन्छ"
+        },
+        "treatment_procedure": {
+          "step_by_step": {
+            "english": [
+              "1. 🪓 Remove juniper trees within 300m",
+              "2. 🧴 Apply fungicide at pink bud stage",
+              "3. 🌿 Use resistant apple varieties",
+              "4. 🔁 Spray every 7-10 days during infection period"
+            ],
+            "nepali": [
+              "१. 🪓 ३०० मिटरभित्र जुनिपर रूख हटाउनुहोस्",
+              "२. 🧴 गुलाफी कलिका अवस्थामा फन्जिसाइड लगाउनुहोस्",
+              "३. 🌿 प्रतिरोधी स्याउ किसिम प्रयोग गर्नुहोस्",
+              "४. 🔁 संक्रमण अवधिमा हरेक ७-१० दिनमा स्प्रे गर्नुहोस्"
+            ]
+          }
+        }
+      },
+
+      "Apple__healthy": {
+        "crop": "Apple",
+        "crop_nepali": "स्याउ",
+        "status": "Healthy",
+        "status_nepali": "निरोगी",
+        "severity": "None",
+        "severity_emoji": "🟢",
+        "crop_emoji": "🍎✅",
+        "maintenance_tips": {
+          "english": [
+            "✅ Continue regular monitoring",
+            "💧 Maintain proper irrigation",
+            "🌱 Apply balanced fertilizer (NPK 10-10-10)",
+            "✂️ Prune during dormant season",
+            "🐝 Ensure proper pollination"
+          ],
+          "nepali": [
+            "✅ नियमित निगरानी जारी राख्नुहोस्",
+            "💧 उचित सिँचाइ कायम राख्नुहोस्",
+            "🌱 सन्तुलित मल लगाउनुहोस् (NPK १०-१०-१०)",
+            "✂️ निष्क्रिय मौसममा काटछाँट गर्नुहोस्",
+            "🐝 उचित परागण सुनिश्चित गर्नुहोस्"
+          ]
+        },
+        "next_checkup": {
+          "english": "In 2 weeks",
+          "nepali": "२ हप्तामा"
+        }
+      },
+
+      "Banana__Panama_Disease": {
+        "crop": "Banana",
+        "crop_nepali": "केरा",
+        "disease": "Panama Disease (Fusarium Wilt)",
+        "disease_nepali": "पनामा रोग (फ्युजेरियम विल्ट)",
+        "severity": "Critical",
+        "severity_emoji": "🔴🆘",
+        "crop_emoji": "🍌⚠️",
+        "warning": {
+          "english": "🚨 QUARANTINE DISEASE - Highly destructive and soil-borne",
+          "nepali": "🚨 क्वारेन्टाइन रोग - अत्यधिक विनाशकारी र माटोजन्य"
+        },
+        "emergency_protocol": {
+          "english": [
+            "🚫 IMMEDIATE: Stop all movement from infected area",
+            "🆘 REPORT: Notify agriculture department immediately",
+            "🔥 DESTROY: Uproot and burn all infected plants",
+            "🧼 SANITIZE: Disinfect all tools and equipment",
+            "🔄 ROTATE: No banana planting for 5+ years"
+          ],
+          "nepali": [
+            "🚫 तुरुन्तै: संक्रमित क्षेत्रबाट सबै आवागमन रोक्नुहोस्",
+            "🆘 रिपोर्ट: तुरुन्तै कृषि विभागलाई जानकारी दिनुहोस्",
+            "🔥 नष्ट गर्नुहोस्: सबै संक्रमित बोट उखेलेर जलाउनुहोस्",
+            "🧼 स्वच्छ पार्नुहोस्: सबै औजार र उपकरणहरू निस्सासन गर्नुहोस्",
+            "🔄 घुमाउनुहोस्: ५+ वर्षसम्म केरा रोप्नु हुँदैन"
+          ]
+        },
+        "resistant_varieties": {
+          "english": ["GCTCV-219", "FHIA-01", "FHIA-18"],
+          "nepali": ["जीसीटीसीभी-२१९", "एफएचआइए-०१", "एफएचआइए-१८"]
+        }
+      },
+
+      "Tomato__Early_blight": {
+        "crop": "Tomato",
+        "crop_nepali": "गोलभेडा",
+        "disease": "Early Blight",
+        "disease_nepali": "अर्ली ब्लाइट",
+        "severity": "Medium",
+        "severity_emoji": "🟠",
+        "crop_emoji": "🍅",
+        "treatment_procedure": {
+          "step_by_step": {
+            "english": [
+              "1. 🍂 Remove lower infected leaves",
+              "2. 💧 Water at soil level (avoid overhead)",
+              "3. 🧴 Apply chlorothalonil fungicide",
+              "4. 🌿 Mulch with straw to prevent splashing",
+              "5. 🔁 Spray every 7-10 days"
+            ],
+            "nepali": [
+              "१. 🍂 तल्ला संक्रमित पातहरू हटाउनुहोस्",
+              "२. 💧 माटोको सतहमा पानी दिनुहोस् (माथिबाट नदिनुहोस्)",
+              "३. 🧴 क्लोरोथालोनिल फन्जिसाइड लगाउनुहोस्",
+              "४. 🌿 छिट्किन रोक्न परालले मल्च गर्नुहोस्",
+              "५. 🔁 हरेक ७-१० दिनमा स्प्रे गर्नुहोस्"
+            ]
+          }
+        },
+        "organic_solutions": {
+          "english": [
+            "🌿 Copper fungicide sprays",
+            "🍃 Bacillus subtilis products",
+            "🌼 Neem oil extract",
+            "☕ Compost tea applications"
+          ],
+          "nepali": [
+            "🌿 कपर फन्जिसाइड स्प्रे",
+            "🍃 बेसिलस सब्टिलिस उत्पादनहरू",
+            "🌼 निम तेल निकासी",
+            "☕ कम्पोस्ट चिया अनुप्रयोग"
+          ]
+        }
+      },
+
+      "Tomato__Late_blight": {
+        "crop": "Tomato",
+        "crop_nepali": "गोलभेडा",
+        "disease": "Late Blight",
+        "disease_nepali": "लेट ब्लाइट",
+        "severity": "High",
+        "severity_emoji": "🔴",
+        "crop_emoji": "🍅⚠️",
+        "emergency_response": {
+          "english": [
+            "⚡ ACT WITHIN 24 HOURS",
+            "🔥 Destroy all infected plants immediately",
+            "🚫 Stop overhead irrigation",
+            "💊 Apply systemic fungicide",
+            "📊 Monitor neighboring fields"
+          ],
+          "nepali": [
+            "⚡ २४ घण्टाभित्र कारबाही गर्नुहोस्",
+            "🔥 सबै संक्रमित बोट तुरुन्तै नष्ट गर्नुहोस्",
+            "🚫 माथिबाट सिँचाइ रोक्नुहोस्",
+            "💊 प्रणालीगत फन्जिसाइड लगाउनुहोस्",
+            "📊 छेउछाउका खेतहरू निगरानी गर्नुहोस्"
+          ]
+        }
+      },
+
+      "Tomato__healthy": {
+        "crop": "Tomato",
+        "crop_nepali": "गोलभेडा",
+        "status": "Healthy",
+        "status_nepali": "निरोगी",
+        "severity": "None",
+        "severity_emoji": "🟢",
+        "crop_emoji": "🍅✅",
+        "preventive_care": {
+          "english": [
+            "✅ Rotate crops annually",
+            "🌱 Use disease-resistant varieties",
+            "💧 Drip irrigation recommended",
+            "🌿 Apply calcium to prevent blossom end rot",
+            "🐛 Monitor for pests regularly"
+          ],
+          "nepali": [
+            "✅ वार्षिक बाली घुमाउनुहोस्",
+            "🌱 रोग प्रतिरोधी किसिम प्रयोग गर्नुहोस्",
+            "💧 ड्रिप सिँचाइ सिफारिस गरिन्छ",
+            "🌿 ब्लसम एन्ड रट रोक्न क्याल्सियम लगाउनुहोस्",
+            "🐛 कीराहरूको लागि नियमित निगरानी गर्नुहोस्"
+          ]
+        }
+      },
+
+      "Potato__Early_blight": {
+        "crop": "Potato",
+        "crop_nepali": "आलु",
+        "disease": "Early Blight",
+        "disease_nepali": "अर्ली ब्लाइट",
+        "severity": "Medium",
+        "severity_emoji": "🟠",
+        "crop_emoji": "🥔",
+        "treatment_procedure": {
+          "step_by_step": {
+            "english": [
+              "1. 🍃 Remove infected foliage",
+              "2. 🧴 Apply mancozeb fungicide",
+              "3. 💧 Reduce leaf wetness period",
+              "4. 🌾 Harvest tubers after vines die naturally",
+              "5. 🏪 Store in cool, dry conditions"
+            ],
+            "nepali": [
+              "१. 🍃 संक्रमित पातहरू हटाउनुहोस्",
+              "२. 🧴 म्यान्कोजेब फन्जिसाइड लगाउनुहोस्",
+              "३. 💧 पातको ओसिलो अवधि घटाउनुहोस्",
+              "४. 🌾 लहरा प्राकृतिक रूपमा मरेपछि कन्दहरू उखेल्नुहोस्",
+              "५. 🏪 चिसो, सुख्खा अवस्थामा भण्डारण गर्नुहोस्"
+            ]
+          }
+        }
+      },
+
+      "Potato__Late_blight": {
+        "crop": "Potato",
+        "crop_nepali": "आलु",
+        "disease": "Late Blight",
+        "disease_nepali": "लेट ब्लाइट",
+        "severity": "High",
+        "severity_emoji": "🔴",
+        "crop_emoji": "🥔⚠️",
+        "historical_note": {
+          "english": "⚠️ Caused Irish Potato Famine (1845-1849)",
+          "nepali": "⚠️ आइरिस आलु दुर्भिक्षको कारण (१८४५-१८४९)"
+        }
+      },
+
+      "Mango__Anthracnose": {
+        "crop": "Mango",
+        "crop_nepali": "आँप",
+        "disease": "Anthracnose",
+        "disease_nepali": "एन्थ्रेक्नोज",
+        "severity": "High",
+        "severity_emoji": "🔴",
+        "crop_emoji": "🥭",
+        "treatment_procedure": {
+          "step_by_step": {
+            "english": [
+              "1. ✂️ Prune for better air circulation",
+              "2. 🧴 Apply copper fungicide before flowering",
+              "3. 🌧️ Avoid irrigation during flowering",
+              "4. 🗑️ Remove infected plant parts",
+              "5. 🔁 Continue sprays at 21-day intervals"
+            ],
+            "nepali": [
+              "१. ✂️ राम्रो हावा संचलनको लागि काटछाँट गर्नुहोस्",
+              "२. 🧴 फूल्नुभन्दा पहिले कपर फन्जिसाइड लगाउनुहोस्",
+              "३. 🌧️ फूल्ने समयमा सिँचाइबाट टाढा रहनुहोस्",
+              "४. 🗑️ संक्रमित बोटका भागहरू हटाउनुहोस्",
+              "५. 🔁 २१ दिनको अन्तरालमा स्प्रे जारी राख्नुहोस्"
+            ]
+          }
+        }
+      },
+
+      "Coffee__Rust": {
+        "crop": "Coffee",
+        "crop_nepali": "कफी",
+        "disease": "Coffee Leaf Rust",
+        "disease_nepali": "कफी पात गेरू",
+        "severity": "Critical",
+        "severity_emoji": "🔴🆘",
+        "crop_emoji": "☕⚠️",
+        "economic_impact": {
+          "english": "Can cause 30-80% yield loss",
+          "nepali": "३०-८०% उत्पादन हानि गर्न सक्छ"
+        },
+        "integrated_management": {
+          "english": [
+            "🌳 Shade management (40-60% shade)",
+            "🌱 Resistant varieties (Catimor, Sarchimor)",
+            "🧪 Fungicide applications",
+            "📊 Regular monitoring",
+            "🍃 Good nutrition management"
+          ],
+          "nepali": [
+            "🌳 छायाँ व्यवस्थापन (४०-६०% छायाँ)",
+            "🌱 प्रतिरोधी किसिमहरू (क्याटिमोर, सार्चिमोर)",
+            "🧪 फन्जिसाइड अनुप्रयोग",
+            "📊 नियमित निगरानी",
+            "🍃 राम्रो पोषण व्यवस्थापन"
+          ]
+        }
+      },
+
+      "Sugarcane__RedRust": {
+        "crop": "Sugarcane",
+        "crop_nepali": "उखु",
+        "disease": "Red Rust",
+        "disease_nepali": "रातो गेरू",
+        "severity": "High",
+        "severity_emoji": "🔴",
+        "crop_emoji": "🎋",
+        "treatment_procedure": {
+          "step_by_step": {
+            "english": [
+              "1. 🔥 Burn crop residues after harvest",
+              "2. 🌱 Use disease-free setts",
+              "3. 🧴 Apply mancozeb fungicide",
+              "4. 💧 Avoid water stagnation",
+              "5. 🔁 Crop rotation with pulses"
+            ],
+            "nepali": [
+              "१. 🔥 फसल काटेपछि अवशेषहरू जलाउनुहोस्",
+              "२. 🌱 रोगमुक्त सेट प्रयोग गर्नुहोस्",
+              "३. 🧴 म्यान्कोजेब फन्जिसाइड लगाउनुहोस्",
+              "४. 💧 पानी जम्न नदिनुहोस्",
+              "५. 🔁 दालहरूसँग बाली घुमाउनुहोस्"
+            ]
+          }
+        }
+      }
+    },
+    
+    "general_guidelines": {
+      "safety_first": {
+        "english": [
+          "🧤 Always wear protective gloves",
+          "😷 Use mask when spraying chemicals",
+          "👀 Read pesticide labels carefully",
+          "🚫 Don't spray in windy conditions",
+          "🛡️ Follow pre-harvest intervals"
+        ],
+        "nepali": [
+          "🧤 सधैं सुरक्षात्मक हातेला लगाउनुहोस्",
+          "😷 रसायन स्प्रे गर्दा मास्क प्रयोग गर्नुहोस्",
+          "👀 कीटनाशक लेबल ध्यानपूर्वक पढ्नुहोस्",
+          "🚫 हावादार अवस्थामा स्प्रे नगर्नुहोस्",
+          "🛡️ फसल काट्नुभन्दा पहिलेको अन्तराल पालना गर्नुहोस्"
+        ]
+      },
+      "when_to_consult_expert": {
+        "english": [
+          "📞 When disease spreads rapidly",
+          "🆘 When >30% plants are infected",
+          "❓ When unsure about diagnosis",
+          "💸 Before investing in expensive treatments",
+          "🏥 When human/animal health is at risk"
+        ],
+        "nepali": [
+          "📞 रोग छिटो फैलिन थालेमा",
+          "🆘 ३०% भन्दा बढी बोट संक्रमित भएमा",
+          "❓ निदानमा अनिश्चित भएमा",
+          "💸 महँगो उपचारमा लगानी गर्नुभन्दा पहिले",
+          "🏥 मानव/पशु स्वास्थ्य जोखिममा भएमा"
+        ]
+      },
+      "contact_information": {
+        "nepal": {
+          "emergency": "🔴 Plant Quarantine Office: 01-xxxxxxx",
+          "helpline": "📞 Agriculture Helpline: 1618",
+          "website": "🌐 www.doanepal.gov.np"
+        },
+        "india": {
+          "helpline": "📞 Kisan Call Center: 1800-180-1551",
+          "website": "🌐 www.agricoop.nic.in"
+        }
+      }
+    },
+    
+    "disclaimer": {
+      "english": "This advisory is for informational purposes only. Always consult with local agricultural experts for site-specific recommendations. Chemical recommendations may vary based on local regulations and product availability.",
+      "nepali": "यो सल्लाह सूचनात्मक उद्देश्यको लागि मात्र हो। स्थान-विशिष्ट सिफारिसहरूको लागि सधैं स्थानीय कृषि विशेषज्ञहरूसँग परामर्श गर्नुहोस्। रसायन सिफारिसहरू स्थानीय नियमहरू र उत्पादन उपलब्धताको आधारमा फरक हुन सक्छन्।"
+    }
+  }
+}
