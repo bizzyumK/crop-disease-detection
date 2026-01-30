@@ -1,35 +1,38 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-const farmerSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema(
+  {
+    username:{
+      type: String,
+      required:[true,'Username is required'],
+      unique: true,
+      minlength: 3,
+      trim:true,
+    },
 
-  name :{
-    type : String,
-    required: true,
-    trim: true
-  },
+    email:{
+      type:String,
+      required:[true,'Email is required'],
+      trim:true,
+      match: [/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, "Please enter a valid email"],
+      unique:true,
+    },
 
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-
-  password: {
-    type: String,
-    required: true,
-  },
-
-  createdAt: {
-    type: Date,
-    default: Date.now,
+    password:{
+      type:String,
+      required:[true,'Password is required!'],
+      match:[/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/,
+      "Password must be 8+ chars, with uppercase, lowercase, number & special char"]
+    },
   }
+  ,{timestamps:true}
+);
 
-});
 
 
 //hashing before saving
-farmerSchema.pre("save",async function(){
+UserSchema.pre("save",async function(){
 
   if(!this.isModified("password")){
     return;
@@ -42,8 +45,8 @@ farmerSchema.pre("save",async function(){
 
 //if not modified compare pwd for login
 
-farmerSchema.methods.matchPassword = async function(enteredPwd){
+UserSchema.methods.matchPassword = async function(enteredPwd){
   return await bcrypt.compare(enteredPwd, this.password);
 };
 
-module.exports = mongoose.model("Farmer",farmerSchema);
+module.exports = mongoose.model("User",UserSchema);
