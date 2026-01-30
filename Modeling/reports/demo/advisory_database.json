@@ -1,0 +1,1392 @@
+{
+    "Apple__Apple_scab": {
+        "crop": "Apple",
+        "disease": "Apple Scab",
+        "severity": "Moderate to High",
+        "symptoms": [
+            "Olive-green to black spots on leaves",
+            "Velvety lesions on undersides of leaves",
+            "Fruit deformation and cracking"
+        ],
+        "causes": [
+            "Fungus Venturia inaequalis",
+            "Cool, wet spring weather",
+            "Poor air circulation"
+        ],
+        "prevention": [
+            "Plant resistant varieties",
+            "Prune trees for better air circulation",
+            "Remove fallen leaves in autumn"
+        ],
+        "treatment": [
+            "Apply fungicides in early spring",
+            "Use copper-based sprays",
+            "Apply sulfur-based fungicides"
+        ],
+        "organic_control": [
+            "Baking soda spray (1 tbsp per gallon)",
+            "Neem oil applications",
+            "Copper soap fungicide"
+        ],
+        "chemical_control": [
+            "Myclobutanil",
+            "Trifloxystrobin",
+            "Captan"
+        ],
+        "immediate_actions": [
+            "Remove infected leaves",
+            "Apply fungicide immediately",
+            "Improve drainage around trees"
+        ],
+        "long_term_management": [
+            "Regular pruning",
+            "Proper spacing between trees",
+            "Annual soil testing"
+        ],
+        "monitoring_frequency": "Weekly during growing season",
+        "risk_level": "High",
+        "yield_impact": "20-40% reduction",
+        "resources": [
+            "https://extension.umn.edu/plant-diseases/apple-scab",
+            "Local agricultural extension office"
+        ]
+    },
+    "Apple__healthy": {
+        "crop": "Apple",
+        "disease": "Healthy",
+        "severity": "None",
+        "symptoms": [
+            "No visible disease symptoms",
+            "Vibrant green leaves",
+            "Normal growth"
+        ],
+        "causes": [
+            "Good plant health",
+            "Proper care"
+        ],
+        "prevention": [
+            "Continue current practices",
+            "Regular monitoring"
+        ],
+        "treatment": [
+            "No treatment needed"
+        ],
+        "organic_control": [
+            "Maintain organic practices"
+        ],
+        "chemical_control": [
+            "Not applicable"
+        ],
+        "immediate_actions": [
+            "Continue regular care",
+            "Document current health"
+        ],
+        "long_term_management": [
+            "Annual soil testing",
+            "Regular pruning"
+        ],
+        "monitoring_frequency": "Monthly",
+        "risk_level": "Low",
+        "yield_impact": "Normal yield expected",
+        "resources": [
+            "Maintain good agricultural practices"
+        ]
+    },
+    "Tomato__Early_blight": {
+        "crop": "Tomato",
+        "disease": "Early Blight",
+        "severity": "Moderate",
+        "symptoms": [
+            "Bull's-eye pattern spots",
+            "Yellowing leaves",
+            "Leaf drop"
+        ],
+        "causes": [
+            "Fungus Alternaria solani",
+            "Warm humid weather"
+        ],
+        "prevention": [
+            "Crop rotation",
+            "Proper spacing",
+            "Mulching"
+        ],
+        "treatment": [
+            "Copper fungicides",
+            "Chlorothalonil"
+        ],
+        "organic_control": [
+            "Copper sprays",
+            "Baking soda solution"
+        ],
+        "immediate_actions": [
+            "Remove infected leaves",
+            "Improve air circulation"
+        ],
+        "risk_level": "Medium",
+        "yield_impact": "10-30% reduction"
+    },
+    "Tomato__Late_blight": {
+        "crop": "Tomato",
+        "disease": "Late Blight",
+        "severity": "High",
+        "symptoms": [
+            "Water-soaked spots",
+            "White fungal growth",
+            "Rapid plant death"
+        ],
+        "causes": [
+            "Phytophthora infestans",
+            "Cool wet conditions"
+        ],
+        "prevention": [
+            "Avoid overhead watering",
+            "Use resistant varieties"
+        ],
+        "treatment": [
+            "Apply fungicides immediately",
+            "Remove infected plants"
+        ],
+        "organic_control": [
+            "Copper-based fungicides"
+        ],
+        "immediate_actions": [
+            "Destroy infected plants",
+            "Isolate area"
+        ],
+        "risk_level": "Very High",
+        "yield_impact": "50-100% loss possible"
+    },
+    "Tomato__healthy": {
+        "crop": "Tomato",
+        "disease": "Healthy",
+        "severity": "None",
+        "symptoms": [
+            "No disease signs",
+            "Good plant vigor"
+        ],
+        "recommendations": [
+            "Continue current care",
+            "Monitor regularly"
+        ]
+    },
+    "Corn_(maize)__Common_rust_": {
+        "crop": "Corn (Maize)",
+        "disease": "Common Rust",
+        "severity": "Moderate",
+        "symptoms": [
+            "Reddish-brown pustules",
+            "Yellow leaf spots"
+        ],
+        "treatment": [
+            "Fungicide application",
+            "Plant resistant hybrids"
+        ]
+    },
+    "Potato__Early_blight": {
+        "crop": "Potato",
+        "disease": "Early Blight",
+        "severity": "Moderate",
+        "treatment": [
+            "Chlorothalonil",
+            "Mancozeb sprays"
+        ]
+    },
+    "Potato__Late_blight": {
+        "crop": "Potato",
+        "disease": "Late Blight",
+        "severity": "High",
+        "treatment": [
+            "Immediate fungicide application",
+            "Destroy infected plants"
+        ]
+    },
+    "Grape__Black_rot": {
+        "crop": "Grape",
+        "disease": "Black Rot",
+        "severity": "High",
+        "treatment": [
+            "Prune infected parts",
+            "Apply fungicides"
+        ]
+    },
+    "Grape__healthy": {
+        "crop": "Grape",
+        "disease": "Healthy",
+        "severity": "None"
+    },
+    "Banana__Panama_Disease": {
+        "crop": "Banana",
+        "disease": "Panama Disease",
+        "severity": "Very High",
+        "treatment": [
+            "Destroy infected plants",
+            "Use resistant varieties"
+        ]
+    },
+    "Banana__Healthy_Leaf": {
+        "crop": "Banana",
+        "disease": "Healthy",
+        "severity": "None"
+    },
+    "Mango__Anthracnose": {
+        "crop": "Mango",
+        "disease": "Anthracnose",
+        "severity": "Moderate",
+        "treatment": [
+            "Copper-based fungicides",
+            "Proper pruning"
+        ]
+    },
+    "Mango__Healthy": {
+        "crop": "Mango",
+        "disease": "Healthy",
+        "severity": "None"
+    },
+    "Apple__Black_rot": {
+        "crop": "Apple",
+        "disease": "Black rot",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Apple__Cedar_apple_rust": {
+        "crop": "Apple",
+        "disease": "Cedar apple rust",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Banana__Sigatoka_Disease": {
+        "crop": "Banana",
+        "disease": "Sigatoka Disease",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Cherry_(including_sour)__Powdery_mildew": {
+        "crop": "Cherry_(including_sour)",
+        "disease": "Powdery mildew",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Cherry_(including_sour)__healthy": {
+        "crop": "Cherry_(including_sour)",
+        "disease": "healthy",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Coffee__NoRust": {
+        "crop": "Coffee",
+        "disease": "NoRust",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Coffee__Rust": {
+        "crop": "Coffee",
+        "disease": "Rust",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Corn_(maize)__Cercospora_leaf_spot Gray_leaf_spot": {
+        "crop": "Corn_(maize)",
+        "disease": "Cercospora leaf spot Gray leaf spot",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Corn_(maize)__Northern_Leaf_Blight": {
+        "crop": "Corn_(maize)",
+        "disease": "Northern Leaf Blight",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Corn_(maize)__healthy": {
+        "crop": "Corn_(maize)",
+        "disease": "healthy",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Grape__Esca_(Black_Measles)": {
+        "crop": "Grape",
+        "disease": "Esca (Black Measles)",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Grape__Leaf_blight_(Isariopsis_Leaf_Spot)": {
+        "crop": "Grape",
+        "disease": "Leaf blight (Isariopsis Leaf Spot)",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Mango__Powdery_Mildew": {
+        "crop": "Mango",
+        "disease": "Powdery Mildew",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Orange__Haunglongbing_(Citrus_greening)": {
+        "crop": "Orange",
+        "disease": "Haunglongbing (Citrus greening)",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Peach__Bacterial_spot": {
+        "crop": "Peach",
+        "disease": "Bacterial spot",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Peach__healthy": {
+        "crop": "Peach",
+        "disease": "healthy",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Potato__healthy": {
+        "crop": "Potato",
+        "disease": "healthy",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Strawberry__Leaf_scorch": {
+        "crop": "Strawberry",
+        "disease": "Leaf scorch",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Strawberry__healthy": {
+        "crop": "Strawberry",
+        "disease": "healthy",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Sugarcane__Mosaic": {
+        "crop": "Sugarcane",
+        "disease": "Mosaic",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Sugarcane__RedRot": {
+        "crop": "Sugarcane",
+        "disease": "RedRot",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Sugarcane__RedRust": {
+        "crop": "Sugarcane",
+        "disease": "RedRust",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Sugarcane__Yellow_Rust": {
+        "crop": "Sugarcane",
+        "disease": "Yellow Rust",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Sugarcane__healthy": {
+        "crop": "Sugarcane",
+        "disease": "healthy",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Tomato__Bacterial_spot": {
+        "crop": "Tomato",
+        "disease": "Bacterial spot",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Tomato__Leaf_Mold": {
+        "crop": "Tomato",
+        "disease": "Leaf Mold",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Tomato__Septoria_leaf_spot": {
+        "crop": "Tomato",
+        "disease": "Septoria leaf spot",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Tomato__Spider_mites Two-spotted_spider_mite": {
+        "crop": "Tomato",
+        "disease": "Spider mites Two-spotted spider mite",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Tomato__Target_Spot": {
+        "crop": "Tomato",
+        "disease": "Target Spot",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Tomato__Tomato_Yellow_Leaf_Curl_Virus": {
+        "crop": "Tomato",
+        "disease": "Tomato Yellow Leaf Curl Virus",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    },
+    "Tomato__Tomato_mosaic_virus": {
+        "crop": "Tomato",
+        "disease": "Tomato mosaic virus",
+        "severity": "Unknown",
+        "symptoms": [
+            "Symptoms not specified"
+        ],
+        "causes": [
+            "Causes not specified"
+        ],
+        "prevention": [
+            "Consult local agricultural expert"
+        ],
+        "treatment": [
+            "Seek professional advice"
+        ],
+        "organic_control": [
+            "Use organic fungicides"
+        ],
+        "chemical_control": [
+            "Consult for appropriate chemicals"
+        ],
+        "immediate_actions": [
+            "Isolate plant",
+            "Monitor closely"
+        ],
+        "long_term_management": [
+            "Improve soil health",
+            "Practice crop rotation"
+        ],
+        "monitoring_frequency": "Weekly",
+        "risk_level": "Medium",
+        "yield_impact": "Unknown",
+        "resources": [
+            "Contact local agricultural extension office"
+        ]
+    }
+}
