@@ -10,7 +10,7 @@ const generateToken = (id) => {
 //registration
 exports.registerUser = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { username, email, password } = req.body;
 
     //check if user already exists
 
@@ -22,14 +22,14 @@ exports.registerUser = async (req, res) => {
     //else create from model
 
     const user = await User.create({
-      name,
+      username,
       email,
       password,
     });
 
     res.status(201).json({
       _id: user._id,
-      name: user.name,
+      username: user.name,
       email: user.email,
       token: generateToken(user._id),
     });
@@ -58,7 +58,7 @@ exports.loginUser = async (req, res) => {
 
     res.status(200).json({
       id: user._id,
-      name: user.name,
+      username: user.name,
       email: user.email,
       token: generateToken(user._id),
     });
