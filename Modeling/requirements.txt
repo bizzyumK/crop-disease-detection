@@ -1,4 +1,8 @@
-streamlit==1.29.0  
-tensorflow-cpu==2.19.0
-numpy==1.24.3
-Pillow==10.1.0
+streamlit
+tensorflow
+numpy
+pandas
+pillow
+scikit-learn
+opencv-python-headless
+matplotlib
