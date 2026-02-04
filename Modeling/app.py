@@ -1,11 +1,13 @@
-# app.py - Streamlit Deployment for Crop Disease Detection
-
+# app.py
 import streamlit as st
 import numpy as np
 from PIL import Image
 import json
 import tensorflow as tf
 from tensorflow import keras
+import os
+import random
+from pathlib import Path
 
 # Set page config
 st.set_page_config(
@@ -17,19 +19,23 @@ st.set_page_config(
 # Load model and data
 @st.cache_resource
 def load_model():
-    model = keras.models.load_model("Modeling/models/best_model.keras", compile=False)
+    model_path = "models/best_model.keras"
+    if not os.path.exists(model_path):
+        st.error(f"Model not found at {model_path}")
+        return None
+    model = keras.models.load_model(model_path, compile=False)
     return model
 
 @st.cache_data
 def load_class_indices():
-    with open("Modeling/configs/class_indices.json", "r") as f:
+    with open("configs/class_indices.json", "r") as f:
         class_indices = json.load(f)
     idx_to_class = {v: k for k, v in class_indices.items()}
     return idx_to_class
 
 @st.cache_data
 def load_advisory_data():
-    with open("Modeling/configs/advisory_system.json", "r", encoding="utf-8") as f:
+    with open("configs/advisory_system.json", "r", encoding="utf-8") as f:
         advisory = json.load(f)
     return advisory
 
@@ -37,6 +43,27 @@ def load_advisory_data():
 model = load_model()
 idx_to_class = load_class_indices()
 advisory_data = load_advisory_data()
+
+# Get sample test images
+@st.cache_data
+def get_sample_images():
+    test_dir = Path("Crop Disease Dataset/test")
+    sample_images = []
+    
+    if test_dir.exists():
+        # Get all image files
+        image_extensions = ['.jpg', '.jpeg', '.png', '.JPG', '.JPEG', '.PNG']
+        all_images = []
+        for ext in image_extensions:
+            all_images.extend(test_dir.glob(f"*{ext}"))
+        
+        # Select random samples (max 12)
+        if all_images:
+            num_samples = min(12, len(all_images))
+            sample_paths = random.sample(all_images, num_samples)
+            sample_images = [(str(path), path.name) for path in sample_paths]
+    
+    return sample_images
 
 # Image preprocessing
 def preprocess_image(image):
@@ -80,6 +107,9 @@ def main():
     st.title("🌱 Crop Disease Detection & Advisory System")
     st.markdown("Upload a leaf image to detect diseases and get treatment recommendations")
     
+    # Get sample images
+    sample_images = get_sample_images()
+    
     # Sidebar
     with st.sidebar:
         st.header("⚙️ Settings")
@@ -89,16 +119,25 @@ def main():
             index=0
         )
         
-        st.header("ℹ️ About")
-        st.markdown("""
-        This system detects **45 different crop diseases** across **14 crops**:
-        - Apple, Banana, Corn, Coffee
-        - Grape, Mango, Orange, Peach
-        - Potato, Strawberry, Sugarcane, Tomato, Cherry
-        """)
+        st.header("📊 Model Info")
+        st.metric("Accuracy", "96.18%")
+        st.metric("Disease Classes", "45")
+        st.metric("Crop Types", "14")
         
-        st.markdown("**Model Accuracy:** 96.18%")
-        st.markdown("**F1-Score:** 95.16%")
+        st.header("📸 Sample Images")
+        st.markdown("Try these test images:")
+        
+        # Create 2x2 grid for sample images
+        cols = st.columns(2)
+        for idx, (img_path, img_name) in enumerate(sample_images[:4]):
+            with cols[idx % 2]:
+                try:
+                    img = Image.open(img_path)
+                    # Resize for thumbnail
+                    img.thumbnail((150, 150))
+                    st.image(img, caption=img_name[:20], use_column_width=True)
+                except:
+                    st.write(f"📄 {img_name[:20]}")
     
     # Main content
     col1, col2 = st.columns([1, 1])
@@ -114,75 +153,142 @@ def main():
             image = Image.open(uploaded_file)
             st.image(image, caption="Uploaded Image", use_container_width=True)
             
-            if st.button("🔍 Analyze Disease", type="primary"):
+            # Prediction button
+            col_btn1, col_btn2 = st.columns(2)
+            with col_btn1:
+                predict_btn = st.button("🔍 Analyze Disease", type="primary", use_container_width=True)
+            with col_btn2:
+                clear_btn = st.button("🗑️ Clear", use_container_width=True)
+            
+            if predict_btn:
                 with st.spinner("Analyzing image..."):
-                    # Preprocess and predict
-                    processed_img = preprocess_image(image)
-                    predictions = model.predict(processed_img, verbose=0)[0]
-                    
-                    # Get top predictions
-                    top_indices = np.argsort(predictions)[-3:][::-1]
-                    
-                    # Display results
-                    st.header("📊 Results")
-                    
-                    # Top prediction
-                    top_idx = top_indices[0]
-                    top_class = idx_to_class[top_idx]
-                    confidence = predictions[top_idx] * 100
-                    
-                    st.success(f"**Primary Diagnosis:** {top_class}")
-                    st.metric("Confidence", f"{confidence:.1f}%")
-                    
-                    # Top 3 predictions
-                    st.subheader("Top 3 Predictions:")
-                    for i, idx in enumerate(top_indices):
-                        class_name = idx_to_class[idx]
-                        conf = predictions[idx] * 100
-                        st.progress(float(conf/100), text=f"{i+1}. {class_name} - {conf:.1f}%")
-                    
-                    # Advisory information
-                    st.header("💡 Advisory Information")
-                    advisory = get_advisory_info(top_class, language.lower())
-                    st.markdown(advisory)
-                    
-                    # Emergency warning for critical diseases
-                    if 'severity' in advisory_data["advisory_system"]["diseases"].get(top_class, {}) and \
-                       advisory_data["advisory_system"]["diseases"][top_class]["severity"] in ["Critical", "High"]:
-                        st.warning("⚠️ **URGENT ACTION REQUIRED** - This disease requires immediate attention!")
+                    try:
+                        # Preprocess and predict
+                        processed_img = preprocess_image(image)
+                        predictions = model.predict(processed_img, verbose=0)[0]
+                        
+                        # Get top predictions
+                        top_indices = np.argsort(predictions)[-3:][::-1]
+                        
+                        # Display results
+                        st.header("📊 Results")
+                        
+                        # Top prediction
+                        top_idx = top_indices[0]
+                        top_class = idx_to_class[top_idx]
+                        confidence = predictions[top_idx] * 100
+                        
+                        st.success(f"**Primary Diagnosis:** {top_class}")
+                        st.metric("Confidence", f"{confidence:.1f}%")
+                        
+                        # Top 3 predictions
+                        st.subheader("Top 3 Predictions:")
+                        for i, idx in enumerate(top_indices):
+                            class_name = idx_to_class[idx]
+                            conf = predictions[idx] * 100
+                            with st.expander(f"{i+1}. {class_name} - {conf:.1f}%"):
+                                st.progress(float(conf/100))
+                        
+                        # Advisory information
+                        st.header("💡 Advisory Information")
+                        advisory = get_advisory_info(top_class, language.lower())
+                        st.markdown(advisory)
+                        
+                        # Emergency warning for critical diseases
+                        disease_info = advisory_data["advisory_system"]["diseases"].get(top_class, {})
+                        if disease_info.get("severity") in ["Critical", "High"]:
+                            st.error("⚠️ **URGENT ACTION REQUIRED** - This disease requires immediate attention!")
+                            if "immediate_actions" in disease_info and language.lower() in disease_info["immediate_actions"]:
+                                st.warning("**Immediate Actions:**")
+                                for action in disease_info["immediate_actions"][language.lower()]:
+                                    st.write(f"• {action}")
+                        
+                    except Exception as e:
+                        st.error(f"Error during prediction: {str(e)}")
+            
+            if clear_btn:
+                st.rerun()
     
     with col2:
         if uploaded_file is None:
-            st.header("📋 Supported Diseases")
+            st.header("📋 Try Sample Images")
+            st.markdown("Click on any sample image below to test the system:")
             
-            # Show disease categories
-            diseases_by_crop = {}
-            for class_name in idx_to_class.values():
-                crop = class_name.split('__')[0] if '__' in class_name else 'Other'
-                disease = class_name.split('__')[1] if '__' in class_name else class_name
-                
-                if crop not in diseases_by_crop:
-                    diseases_by_crop[crop] = []
-                diseases_by_crop[crop].append(disease)
+            # Display sample images in a grid
+            if sample_images:
+                # Create 3 columns for the grid
+                cols = st.columns(3)
+                for idx, (img_path, img_name) in enumerate(sample_images):
+                    with cols[idx % 3]:
+                        try:
+                            img = Image.open(img_path)
+                            # Display as clickable card
+                            with st.container(border=True):
+                                st.image(img, use_column_width=True)
+                                st.caption(img_name)
+                                
+                                # Button to load this image
+                                if st.button(f"Use this image", key=f"sample_{idx}", use_container_width=True):
+                                    # Store in session state
+                                    st.session_state.selected_sample = img_path
+                                    st.rerun()
+                        except Exception as e:
+                            st.write(f"📄 {img_name}")
+                            st.caption("Click to load")
             
-            # Display in expanders
-            for crop, diseases in diseases_by_crop.items():
-                with st.expander(f"🌿 {crop}"):
-                    for disease in diseases[:5]:  # Show first 5
-                        st.write(f"- {disease}")
-                    if len(diseases) > 5:
-                        st.write(f"... and {len(diseases)-5} more")
+            # Handle selected sample image from session state
+            if 'selected_sample' in st.session_state:
+                try:
+                    img = Image.open(st.session_state.selected_sample)
+                    st.image(img, caption="Selected Sample", use_container_width=True)
+                    
+                    # Auto-predict for sample image
+                    with st.spinner("Analyzing sample image..."):
+                        processed_img = preprocess_image(img)
+                        predictions = model.predict(processed_img, verbose=0)[0]
+                        
+                        top_idx = np.argmax(predictions)
+                        top_class = idx_to_class[top_idx]
+                        confidence = predictions[top_idx] * 100
+                        
+                        st.success(f"**Result:** {top_class}")
+                        st.metric("Confidence", f"{confidence:.1f}%")
+                        
+                        # Show advisory
+                        st.markdown("**Advisory:**")
+                        advisory = get_advisory_info(top_class, language.lower())
+                        st.markdown(advisory)
+                except:
+                    st.error("Could not process selected image")
             
-            st.header("📸 Sample Images")
-            st.markdown("""
-            **Tips for best results:**
-            1. Use clear, well-lit images
-            2. Focus on the leaf surface
-            3. Include only one leaf per image
-            4. Avoid blurry or dark photos
+            st.header("🎯 Supported Crops")
+            crops = ["Apple", "Banana", "Corn", "Coffee", "Grape", "Mango", 
+                    "Orange", "Peach", "Potato", "Strawberry", "Sugarcane", "Tomato"]
             
-            **Supported formats:** JPG, JPEG, PNG
-            """)
+            cols = st.columns(3)
+            for idx, crop in enumerate(crops):
+                with cols[idx % 3]:
+                    st.info(f"🌿 {crop}")
+    
+    # Sample images section below upload
+    st.markdown("---")
+    st.header("📸 Test Set Samples")
+    st.markdown("Available test images from the dataset:")
+    
+    if sample_images:
+        # Display all sample images
+        cols = st.columns(4)
+        for idx, (img_path, img_name) in enumerate(sample_images):
+            with cols[idx % 4]:
+                try:
+                    img = Image.open(img_path)
+                    img.thumbnail((200, 200))
+                    st.image(img, caption=img_name, use_column_width=True)
+                except:
+                    st.text(f"{img_name}")
+    else:
+        st.warning("No test images found. Please add images to `Crop Disease Dataset/test/` directory.")
+        st.info("Supported formats: JPG, JPEG, PNG")
     
     # Footer
     st.markdown("---")
