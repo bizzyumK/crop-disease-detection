@@ -135,7 +135,8 @@ def main():
                     img = Image.open(img_path)
                     # Resize for thumbnail
                     img.thumbnail((150, 150))
-                    st.image(img, caption=img_name[:20], use_column_width=True)
+                    # FIXED: Changed use_column_width to use_container_width
+                    st.image(img, caption=img_name[:20], use_container_width=True)
                 except:
                     st.write(f"📄 {img_name[:20]}")
     
@@ -151,6 +152,7 @@ def main():
         
         if uploaded_file is not None:
             image = Image.open(uploaded_file)
+            # FIXED: Changed use_container_width=True
             st.image(image, caption="Uploaded Image", use_container_width=True)
             
             # Prediction button
@@ -224,7 +226,8 @@ def main():
                             img = Image.open(img_path)
                             # Display as clickable card
                             with st.container(border=True):
-                                st.image(img, use_column_width=True)
+                                # FIXED: Changed use_column_width to use_container_width
+                                st.image(img, use_container_width=True)
                                 st.caption(img_name)
                                 
                                 # Button to load this image
@@ -240,6 +243,7 @@ def main():
             if 'selected_sample' in st.session_state:
                 try:
                     img = Image.open(st.session_state.selected_sample)
+                    # FIXED: Changed use_column_width to use_container_width
                     st.image(img, caption="Selected Sample", use_container_width=True)
                     
                     # Auto-predict for sample image
@@ -283,7 +287,8 @@ def main():
                 try:
                     img = Image.open(img_path)
                     img.thumbnail((200, 200))
-                    st.image(img, caption=img_name, use_column_width=True)
+                    # FIXED: Changed use_column_width to use_container_width
+                    st.image(img, caption=img_name, use_container_width=True)
                 except:
                     st.text(f"{img_name}")
     else:
