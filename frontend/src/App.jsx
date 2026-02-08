@@ -9,6 +9,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Layout from "./components/Layout";
 
 function App() {
+  const token = localStorage.getItem('token');
+
   return (
     <Routes>
       <Route path="/" element={<Navigate to="/dashboard" replace />} />
