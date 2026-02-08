@@ -1,60 +1,52 @@
-const Farmer = require('../models/Farmer');
-const jwt = require('jsonwebtoken');
+const User = require("../models/User");
+const jwt = require("jsonwebtoken");
 
 //generate JWT token
 
-const generateToken = (id) =>{
-  return jwt.sign(
-    {id},
-    process.env.JWT_SECRET,
-    {expiresIn: '7d'}
-  );
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "7d" });
 };
-
 
 //registration
-exports.registerFarmer = async (req,res)=>{
+exports.registerUser = async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
 
-try{
+    //check if user already exists
 
-  const {name, email, password} = req.body;
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "User is already registered!" });
+    }
 
-  //check if farmer already exists
+    //else create from model
 
-   const existingFarmer = await Farmer.findOne({email});
-   if(existingFarmer){
-    return res.status(400).json({message: "Farmer is already registered!"});
-   }
+    const user = await User.create({
+      username,
+      email,
+      password,
+    });
 
-   //else create from model
-
-   const farmer = await Farmer.create({
-    name,
-    email,
-    password,
-   });
-
-   res.status(201).json({
-    _id: farmer._id,
-    name: farmer.name,
-    email: farmer.email,
-    token: generateToken(farmer._id),
-   })
-
-} catch(error){
-  console.error(error);
-  res.status(500).json({message: "Registration Failed"});
-}
+    res.status(201).json({
+      _id: user._id,
+      username: user.name,
+      email: user.email,
+      token: generateToken(user._id),
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Registration Failed" });
+  }
 };
-
 
 //login
 
-exports.loginFarmer = async (req,res) =>{
-  try{
-    const {email,password} = req.body;
+exports.loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
 
     //find by email
+<<<<<<< HEAD
     const farmer = await Farmer.findOne({email});
     if(!farmer){
       return res.status(400).json({message: "Invalid Credentials!"});
@@ -70,13 +62,25 @@ exports.loginFarmer = async (req,res) =>{
       name: farmer.name,
       email: farmer.email,
       token: generateToken(farmer._id),
-    });
-
-
-    } catch(error){
-      res.status(500).json({message: "Login Failed! "});
+=======
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ message: "Invalid Email!" });
     }
-  };
 
+    const isMatch = await user.matchPassword(password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid Password!" });
+    }
 
-
+    res.status(200).json({
+      id: user._id,
+      username: user.name,
+      email: user.email,
+      token: generateToken(user._id),
+>>>>>>> conflict-fixed
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Login Failed! " });
+  }
+};
