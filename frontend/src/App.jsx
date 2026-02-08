@@ -1,4 +1,4 @@
-import Signin from './pages/Signin'
+import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Error from './pages/Error'
 import Dashboard from './pages/Dashboard';
@@ -9,7 +9,7 @@ function App(){
 
     <Router>
       <Routes>
-        <Route path ="/signin" element = {<Signin/>} />
+        <Route path ="/login" element = {<Login/>} />
         <Route path ="/signup" element = {<Signup/>} />
         <Route path ="/dashboard" element = {<Dashboard/>} />
         <Route path ="*" element = {<Error/>} />
