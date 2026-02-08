@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 import React, { useState } from 'react';
-=======
->>>>>>> 7116923e0 (axios installed)
 import loginImg from '../assets/login.webp';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
@@ -120,4 +117,4 @@ const Login = () => {
   );
 };
 
-export default Signin;
+export default Login;

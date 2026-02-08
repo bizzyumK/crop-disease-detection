@@ -11,17 +11,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     "axios": "^1.13.5",
-=======
->>>>>>> c81093639 (sign up page created)
-=======
->>>>>>> de99bf8e9 (login page implmented)
-=======
-    "axios": "^1.13.4",
->>>>>>> 7116923e0 (axios installed)
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.13.0",
