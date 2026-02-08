@@ -40,10 +40,8 @@ const Login = () => {
 
   return (
     <div className="relative min-h-screen w-full bg-[#0d140d] flex items-center justify-center overflow-hidden px-6">
-      
       <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-green-900/30 rounded-full blur-[120px]" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-emerald-900/20 rounded-full blur-[120px]" />
-
       <div className="relative z-10 w-full max-w-md flex flex-col items-center">
         
         <div className="text-center mb-6">

@@ -15,6 +15,7 @@ const Dashboard = () => {
   const [toast, setToast] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
+  const [user, setUser] = useState(null);
 
   const showToast = (message, type = "success") => {
     setToast({ message, type });
@@ -93,6 +94,8 @@ const Dashboard = () => {
       </div>
     </div>
   );
+
+  if (!user) return null; // wait until user loaded
 
   return (
     <div className="min-h-screen bg-[#0d140d]">
