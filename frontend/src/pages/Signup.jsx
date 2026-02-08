@@ -1,15 +1,6 @@
 import signupImg from '../assets/login.webp';
-<<<<<<< HEAD
 
 const Signup = () => {
-=======
-import { useNavigate } from 'react-router-dom';
-
-const Signup = () => {
-
-  const navigate = useNavigate();
-
->>>>>>> conflict-fixed
   return (
     <div className="relative h-screen w-full bg-[#0d140d] flex items-center justify-center overflow-hidden px-6">
       
@@ -22,12 +13,9 @@ const Signup = () => {
           <h1 className="text-4xl font-bold text-white tracking-tight mb-1">
             Create Account
           </h1>
-<<<<<<< HEAD
           <p className="text-zinc-400 text-sm">
             Join us and get started
           </p>
-=======
->>>>>>> conflict-fixed
         </div>
 
         {/* Image */}
@@ -35,19 +23,11 @@ const Signup = () => {
           <img
             src={signupImg}
             alt="signup"
-<<<<<<< HEAD
             className="w-64 object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
           />
         </div>
 
         {/* Form */}
-=======
-            className="w-50 object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
-          />
-        </div>
-
-
->>>>>>> conflict-fixed
         <form className="w-full space-y-3">
           {[
             { label: 'Full Name', type: 'text', placeholder: 'Enter your name' },
@@ -77,13 +57,7 @@ const Signup = () => {
 
         <p className="mt-4 text-zinc-400 text-sm">
           Already have an account?
-<<<<<<< HEAD
           <button className="ml-2 text-emerald-400 font-semibold hover:text-emerald-300 transition-colors">
-=======
-          <button className="ml-2 text-emerald-400 font-semibold hover:text-emerald-300 transition-colors"
-          onClick={()=>navigate('/signin')}
-          >
->>>>>>> conflict-fixed
             Sign in
           </button>
         </p>
@@ -92,8 +66,4 @@ const Signup = () => {
   );
 };
 
-<<<<<<< HEAD
 export default Signup;
-=======
-export default Signup;
->>>>>>> conflict-fixed
