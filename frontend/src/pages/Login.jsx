@@ -1,4 +1,3 @@
-import React from 'react';
 import loginImg from '../assets/login.webp';
 import { useNavigate } from 'react-router-dom';
 
