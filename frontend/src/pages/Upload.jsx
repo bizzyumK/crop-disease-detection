@@ -28,7 +28,7 @@ const Upload = () => {
         },
       });
       alert("Image uploaded successfully!");
-      navigate("/dashboard"); // go back to dashboard
+      navigate("/dashboard");
     } catch (err) {
       console.error(err);
       alert("Upload failed!");
@@ -40,16 +40,19 @@ const Upload = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-[#0d140d] px-6">
       <h1 className="text-3xl text-white mb-6">Upload Crop Image</h1>
+
       <form
         onSubmit={handleSubmit}
         className="flex flex-col items-center gap-4 bg-white/5 p-8 rounded-xl"
       >
+        {/* Default browser file input */}
         <input
           type="file"
           accept="image/*"
           onChange={handleFileChange}
           className="text-white"
         />
+
         <button
           type="submit"
           disabled={loading}
@@ -58,6 +61,14 @@ const Upload = () => {
           {loading ? "Uploading..." : "Upload"}
         </button>
       </form>
+
+      {/* Back to Dashboard button */}
+      <button
+        onClick={() => navigate("/dashboard")}
+        className="mt-6 bg-gray-700 text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition"
+      >
+        Back to Dashboard
+      </button>
     </div>
   );
 };
