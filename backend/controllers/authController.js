@@ -29,7 +29,7 @@ exports.registerUser = async (req, res) => {
 
     res.status(201).json({
       _id: user._id,
-      username: user.name,
+      username: user.username,
       email: user.email,
       token: generateToken(user._id),
     });
