@@ -4,7 +4,7 @@ const path = require('path');
 
 const getImages = async (req, res) => {
   try {
-    const images = await Image.find({ farmer: req.farmer._id })
+    const images = await Image.find({ farmer: req.user._id })
       .sort({ createdAt: -1 });
 
     res.status(200).json(images);
@@ -20,7 +20,7 @@ const uploadImage = async (req, res) => {
     }
 
     const image = await Image.create({
-      farmer: req.farmer._id,
+      farmer: req.user._id,
       imageUrl: `/uploads/${req.file.filename}`,
       diseaseDetected: 'pending'
     });
@@ -43,7 +43,7 @@ const deleteImage = async (req, res) => {
       return res.status(404).json({ message: 'Image not found!' });
     }
 
-    if (image.farmer.toString() !== req.farmer._id.toString()) {
+    if (image.farmer.toString() !== req.user._id.toString()) {
       return res.status(401).json({ message: 'Not authorized!' });
     }
 
