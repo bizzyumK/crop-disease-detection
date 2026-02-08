@@ -46,7 +46,6 @@ exports.loginUser = async (req, res) => {
     const { email, password } = req.body;
 
     //find by email
-<<<<<<< HEAD
     const farmer = await Farmer.findOne({email});
     if(!farmer){
       return res.status(400).json({message: "Invalid Credentials!"});
@@ -62,23 +61,6 @@ exports.loginUser = async (req, res) => {
       name: farmer.name,
       email: farmer.email,
       token: generateToken(farmer._id),
-=======
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(400).json({ message: "Invalid Email!" });
-    }
-
-    const isMatch = await user.matchPassword(password);
-    if (!isMatch) {
-      return res.status(400).json({ message: "Invalid Password!" });
-    }
-
-    res.status(200).json({
-      id: user._id,
-      username: user.name,
-      email: user.email,
-      token: generateToken(user._id),
->>>>>>> conflict-fixed
     });
   } catch (error) {
     res.status(500).json({ message: "Login Failed! " });
