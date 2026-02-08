@@ -46,7 +46,7 @@ exports.loginUser = async (req, res) => {
     const { email, password } = req.body;
 
     //find by email
-    const farmer = await Farmer.findOne({email});
+    const farmer = await User.findOne({email});
     if(!farmer){
       return res.status(400).json({message: "Invalid Credentials!"});
     }
