@@ -1,36 +1,74 @@
-import cropImg from '../assets/login.webp';
-import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import ImageCard from "../components/ImageCard";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    // check login
-    const storedUser = JSON.parse(localStorage.getItem('user'));
-    const token = localStorage.getItem('token');
+    const storedUser = JSON.parse(localStorage.getItem("user"));
     if (!storedUser || !token) {
-      navigate('/login'); // redirect if not logged in
+      navigate("/login");
     } else {
       setUser(storedUser);
+      fetchImages();
     }
-  }, [navigate]);
+  }, [navigate, token]);
 
-  const handleLogout = () => {
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
-    navigate('/login');
+  const fetchImages = async () => {
+    setLoading(true);
+    try {
+      const res = await axios.get("http://localhost:5000/api/images", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setImages(Array.isArray(res.data) ? res.data : []);
+    } catch (err) {
+      console.error(err);
+      setImages([]);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  // dummy images
-  const images = [
-    { id: 1, status: 'pending' },
-    { id: 2, status: 'Leaf Blight' },
-    { id: 3, status: 'Healthy' },
-  ];
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
 
-  if (!user) return null; // wait until user loaded
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this image?")) return;
+    try {
+      await axios.delete(`http://localhost:5000/api/images/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setImages(images.filter((img) => img._id !== id));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleViewAdvice = async (disease) => {
+    if (!disease || disease === "pending" || disease === "Healthy") return;
+    try {
+      const res = await axios.get(
+        `http://localhost:5000/api/advisory/${disease}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      alert(`Disease: ${res.data.disease}\nAdvice: ${res.data.advice}`);
+    } catch (err) {
+      alert("No advice found for this disease!");
+      console.error(err);
+    }
+  };
+
+  if (!user) return null;
 
   return (
     <div className="relative min-h-screen w-full bg-[#0d140d] px-6 py-10 overflow-hidden">
@@ -46,43 +84,39 @@ const Dashboard = () => {
             <p className="text-zinc-400">Upload crop images and get disease advice</p>
           </div>
 
-          <button
-            onClick={handleLogout}
-            className="bg-red-500 text-white font-bold px-6 py-3 rounded-full hover:bg-red-600"
-          >
-            Logout
-          </button>
+          <div className="flex gap-4">
+            <button
+              onClick={() => navigate("/upload")}
+              className="bg-white text-black font-bold px-6 py-3 rounded-full hover:bg-zinc-200"
+            >
+              Upload Image
+            </button>
+
+            <button
+              onClick={handleLogout}
+              className="bg-red-500 text-white font-bold px-6 py-3 rounded-full hover:bg-red-600"
+            >
+              Logout
+            </button>
+          </div>
         </div>
 
-        {/* Image Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {images.map((img) => (
-            <div
-              key={img.id}
-              className="bg-white/5 border border-white/10 rounded-3xl p-5 backdrop-blur-xl hover:scale-[1.02] transition-transform"
-            >
-              <img
-                src={cropImg}
-                alt="crop"
-                className="w-full h-52 object-cover rounded-2xl mb-4"
+        {loading ? (
+          <p className="text-white">Loading images...</p>
+        ) : images.length === 0 ? (
+          <p className="text-white">No images uploaded yet.</p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {images.map((img) => (
+              <ImageCard
+                key={img._id}
+                image={img}
+                onDelete={handleDelete}
+                onViewAdvice={handleViewAdvice}
               />
-              <div className="flex justify-between items-center mb-4">
-                <span className="text-sm text-zinc-400">Status</span>
-                <span
-                  className={`px-4 py-1 rounded-full text-sm font-semibold
-                    ${img.status === 'pending'
-                      ? 'bg-yellow-500/20 text-yellow-400'
-                      : img.status === 'Healthy'
-                      ? 'bg-green-500/20 text-green-400'
-                      : 'bg-red-500/20 text-red-400'
-                    }`}
-                >
-                  {img.status}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
