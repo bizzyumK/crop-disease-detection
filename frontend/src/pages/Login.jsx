@@ -1,10 +1,39 @@
 import loginImg from '../assets/login.webp';
 import { useNavigate } from 'react-router-dom';
-
+import { useState } from 'react';
+import { loginUser } from '../api/auth.api';
 
 const Signin = () => {
-
   const navigate = useNavigate();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    try {
+      const res = await loginUser({ email, password });
+
+      // save token
+      localStorage.setItem('token', res.data.token);
+
+      // optional: save farmer
+      localStorage.setItem('farmer', JSON.stringify(res.data.farmer));
+
+      navigate('/dashboard');
+    } catch (err) {
+      setError(
+        err.response?.data?.message || 'Invalid email or password'
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="relative min-h-screen w-full bg-[#0d140d] flex items-center justify-center overflow-hidden px-6">
@@ -15,10 +44,11 @@ const Signin = () => {
       <div className="relative z-10 w-full max-w-md flex flex-col items-center">
         
         <div className="text-center mb-6">
-          <h1 className="text-4xl font-bold text-white tracking-tight mb-2">Welcome Back!</h1>
+          <h1 className="text-4xl font-bold text-white tracking-tight mb-2">
+            Welcome Back!
+          </h1>
         </div>
 
-        {/*bidu Image */}
         <div className="mb-8">
           <img
             src={loginImg}
@@ -27,15 +57,23 @@ const Signin = () => {
           />
         </div>
 
-        <form className="w-full space-y-4">
+        <form className="w-full space-y-4" onSubmit={handleSubmit}>
+          
+          {error && (
+            <p className="text-red-400 text-sm text-center">{error}</p>
+          )}
+
           <div className="space-y-2">
             <label className="text-xs font-semibold text-zinc-500 uppercase tracking-widest ml-1">
               Email
             </label>
-            <input 
-              type="email" 
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
-              className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-5 text-white placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 transition-all outline-none"
+              className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-5 text-white placeholder:text-zinc-600 focus:ring-2 focus:ring-emerald-500/40"
             />
           </div>
 
@@ -43,26 +81,30 @@ const Signin = () => {
             <label className="text-xs font-semibold text-zinc-500 uppercase tracking-widest ml-1">
               Password
             </label>
-            <input 
-              type="password" 
+            <input
+              type="password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
-              className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-5 text-white placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 transition-all outline-none"
+              className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-5 text-white placeholder:text-zinc-600 focus:ring-2 focus:ring-emerald-500/40"
             />
           </div>
 
-          <button 
+          <button
             type="submit"
-            className="w-full bg-white text-black font-bold py-4 rounded-full mt-4 active:scale-[0.98] hover:bg-zinc-200 transition-all shadow-lg shadow-white/5"
+            disabled={loading}
+            className="w-full bg-white text-black font-bold py-4 rounded-full mt-4 hover:bg-zinc-200 transition-all"
           >
-            Sign In
+            {loading ? 'Signing in...' : 'Sign In'}
           </button>
         </form>
 
-    
         <p className="mt-8 text-zinc-400 text-sm">
-          Don't have an account? 
-          <button className="ml-2 text-emerald-400 font-semibold hover:text-emerald-300 transition-colors"
-            onClick={()=>navigate('/signup')}
+          Don't have an account?
+          <button
+            className="ml-2 text-emerald-400 font-semibold"
+            onClick={() => navigate('/signup')}
           >
             Sign up
           </button>
