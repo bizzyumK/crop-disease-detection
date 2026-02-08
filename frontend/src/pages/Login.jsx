@@ -3,13 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { loginUser } from '../api/auth.api';
 
-const Signin = () => {
+const Login = () => {
   const navigate = useNavigate();
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,17 +18,20 @@ const Signin = () => {
     try {
       const res = await loginUser({ email, password });
 
-      // save token
+      // Store token + user info
       localStorage.setItem('token', res.data.token);
-
-      // optional: save farmer
-      localStorage.setItem('farmer', JSON.stringify(res.data.farmer));
+      localStorage.setItem(
+        'user',
+        JSON.stringify({
+          _id: res.data._id,
+          name: res.data.name,
+          email: res.data.email,
+        })
+      );
 
       navigate('/dashboard');
     } catch (err) {
-      setError(
-        err.response?.data?.message || 'Invalid email or password'
-      );
+      setError(err.response?.data?.message || 'Login failed');
     } finally {
       setLoading(false);
     }
@@ -37,81 +39,44 @@ const Signin = () => {
 
   return (
     <div className="relative min-h-screen w-full bg-[#0d140d] flex items-center justify-center overflow-hidden px-6">
-      
       <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-green-900/30 rounded-full blur-[120px]" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-emerald-900/20 rounded-full blur-[120px]" />
-
       <div className="relative z-10 w-full max-w-md flex flex-col items-center">
-        
-        <div className="text-center mb-6">
-          <h1 className="text-4xl font-bold text-white tracking-tight mb-2">
-            Welcome Back!
-          </h1>
-        </div>
+        <h1 className="text-4xl font-bold text-white mb-2">Welcome Back!</h1>
 
-        <div className="mb-8">
-          <img
-            src={loginImg}
-            alt="bidu"
-            className="w-80 h-75 object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
-          />
-        </div>
+        <img src={loginImg} alt="login" className="w-80 h-75 object-contain mb-8" />
 
         <form className="w-full space-y-4" onSubmit={handleSubmit}>
-          
-          {error && (
-            <p className="text-red-400 text-sm text-center">{error}</p>
-          )}
+          {error && <p className="text-red-400 text-sm text-center">{error}</p>}
 
-          <div className="space-y-2">
-            <label className="text-xs font-semibold text-zinc-500 uppercase tracking-widest ml-1">
-              Email
-            </label>
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-              className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-5 text-white placeholder:text-zinc-600 focus:ring-2 focus:ring-emerald-500/40"
-            />
-          </div>
-
-          <div className="space-y-2">
-            <label className="text-xs font-semibold text-zinc-500 uppercase tracking-widest ml-1">
-              Password
-            </label>
-            <input
-              type="password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-5 text-white placeholder:text-zinc-600 focus:ring-2 focus:ring-emerald-500/40"
-            />
-          </div>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-5 text-white placeholder:text-zinc-600"
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-5 text-white placeholder:text-zinc-600"
+          />
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-white text-black font-bold py-4 rounded-full mt-4 hover:bg-zinc-200 transition-all"
+            className="w-full bg-white text-black font-bold py-4 rounded-full mt-4 hover:bg-zinc-200"
           >
-            {loading ? 'Signing in...' : 'Sign In'}
+            {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
-
-        <p className="mt-8 text-zinc-400 text-sm">
-          Don't have an account?
-          <button
-            className="ml-2 text-emerald-400 font-semibold"
-            onClick={() => navigate('/signup')}
-          >
-            Sign up
-          </button>
-        </p>
       </div>
     </div>
   );
 };
 
-export default Signin;
+export default Login;

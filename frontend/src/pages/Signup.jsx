@@ -22,7 +22,14 @@ const Signup = () => {
 
       // Save token
       localStorage.setItem('token', res.data.token);
-      localStorage.setItem('farmer', JSON.stringify(res.data.farmer));
+      localStorage.setItem(
+        'user',
+        JSON.stringify({
+          _id: res.data._id,
+          name: res.data.name,
+          email: res.data.email,
+        })
+      );
 
       navigate('/dashboard');
     } catch (err) {
@@ -36,12 +43,12 @@ const Signup = () => {
 
   return (
     <div className="relative min-h-screen w-full bg-[#0d140d] flex items-center justify-center overflow-hidden px-6">
-      
+
       <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-green-900/30 rounded-full blur-[120px]" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-emerald-900/20 rounded-full blur-[120px]" />
 
       <div className="relative z-10 w-full max-w-md flex flex-col items-center">
-        
+
         <div className="text-center mb-6">
           <h1 className="text-4xl font-bold text-white tracking-tight mb-2">
             Create Account 🌱
@@ -120,9 +127,9 @@ const Signup = () => {
           Already have an account?
           <button
             className="ml-2 text-emerald-400 font-semibold"
-            onClick={() => navigate('/signin')}
+            onClick={() => navigate('/login')}
           >
-            Sign in
+            Login
           </button>
         </p>
       </div>
