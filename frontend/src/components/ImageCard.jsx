@@ -1,14 +1,18 @@
-import cropImg from "../assets/login.webp";
+import cropImg from "../assets/login.webp"; // fallback if image fails
 
 const ImageCard = ({ image, onDelete, onViewAdvice }) => {
+  // Construct full URL for backend images
+  const imageUrl = image.imageUrl
+    ? `http://localhost:5000${image.imageUrl}`
+    : cropImg;
+
   return (
     <div className="bg-white/5 border border-white/10 rounded-3xl p-5 backdrop-blur-xl hover:scale-[1.02] transition-transform">
       <img
-        src={image.imageUrl || cropImg}
+        src={imageUrl}
         alt="crop"
         className="w-full h-52 object-cover rounded-2xl mb-4"
       />
-
       <div className="flex justify-between items-center mb-4">
         <span className="text-sm text-zinc-400">Status</span>
         <span
