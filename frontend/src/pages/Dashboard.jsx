@@ -16,6 +16,10 @@ const Dashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const token = localStorage.getItem("token");
 
   const showToast = (message, type = "success") => {
     setToast({ message, type });
@@ -95,7 +99,33 @@ const Dashboard = () => {
     </div>
   );
 
-  if (!user) return null; // wait until user loaded
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this image?")) return;
+    try {
+      await axios.delete(`http://localhost:5000/api/images/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setImages(images.filter((img) => img._id !== id));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleViewAdvice = async (disease) => {
+    if (!disease || disease === "pending" || disease === "Healthy") return;
+    try {
+      const res = await axios.get(
+        `http://localhost:5000/api/advisory/${disease}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      alert(`Disease: ${res.data.disease}\nAdvice: ${res.data.advice}`);
+    } catch (err) {
+      alert("No advice found for this disease!");
+      console.error(err);
+    }
+  };
+
+  if (!user) return null;
 
   return (
     <div className="min-h-screen bg-[#0d140d]">

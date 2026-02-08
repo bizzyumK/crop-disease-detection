@@ -9,7 +9,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Layout from "./components/Layout";
 
 function App() {
-  const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
 
   return (
     <Routes>
