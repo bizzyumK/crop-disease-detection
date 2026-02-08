@@ -1,15 +1,13 @@
-const upload = require("../middleware/upload.js")
-const express = require("express");
-
+const express = require ('express');
 const router = express.Router();
 
-const {protect} = require('../middleware/authMiddleware.js')
+const {protect} = require('../middleware/authMiddleware')
 const upload = require('../middleware/upload.js')
 
 const {getImages,
    uploadImage,
     deleteImage
-  } = require('../controllers/imageController.js');
+  } = require('../controllers/imageController');
 
 router.post('/upload',protect,upload.single('image'),uploadImage);
 

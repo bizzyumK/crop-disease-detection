@@ -62,6 +62,7 @@ const deleteImage = async (req, res) => {
     });
 
     await image.deleteOne();
+    res.status(200).json({message:'Image deleted successfully! '});
 
     return res.status(200).json({ message: 'Image deleted successfully!' });
 
