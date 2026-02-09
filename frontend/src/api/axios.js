@@ -28,7 +28,7 @@ api.interceptors.request.use(
 
 
 //auto logout on 401
-api.intercepters.response.use(
+api.interceptors.response.use(
   (response)=>response,
   (error) =>{
     if(error.response?.status === 401){

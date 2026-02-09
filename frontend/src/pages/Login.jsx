@@ -1,11 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import loginImg from '../assets/login.webp';
 import { useNavigate } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
 
 
 const Login = () => {
 
   const navigate = useNavigate();
+  const {login} = useAuth();
+
+  const [form,setForm] = useState({
+    email: '',
+    password: '',
+  });
+
+  const[loading,setLoading] = useState(false);
+  const [error,setError] = useState('');
+
+  const handleChange = (e) =>{
+    setForm({...form,[e.target.value]: e.target.value});
+  };
+
+  const handleSubmit = async (e)=>{
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    try{
+      await login(form); 
+      navigate('/dashboard');
+    } catch(err){
+      setError('Invalid email or password');
+    }
+    finally{
+      setLoading(false);
+    }
+  };
+
 
   return (
     <div className="relative min-h-screen w-full bg-[#0d140d] flex items-center justify-center overflow-hidden px-6">
@@ -28,13 +59,16 @@ const Login = () => {
           />
         </div>
 
-        <form className="w-full space-y-4">
+        <form className="w-full space-y-4" onSubmit={handleSubmit}>
           <div className="space-y-2">
             <label className="text-xs font-semibold text-zinc-500 uppercase tracking-widest ml-1">
               Email
             </label>
             <input 
               type="email" 
+              name='email'
+              value={form.email}
+              onChange={handleChange}
               placeholder="Enter your email"
               className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-5 text-white placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 transition-all outline-none"
             />
@@ -46,16 +80,26 @@ const Login = () => {
             </label>
             <input 
               type="password" 
+              name='password'
+              value={form.password}
+              onChange={handleChange}
               placeholder="••••••••"
               className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-5 text-white placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-emerald-500/40 transition-all outline-none"
             />
           </div>
 
+          {error && (
+            <p className='text-sm text-red-400 text-center'>
+              {error}
+            </p>
+          )}
+
           <button 
             type="submit"
+            disabled={loading}
             className="w-full bg-white text-black font-bold py-4 rounded-full mt-4 active:scale-[0.98] hover:bg-zinc-200 transition-all shadow-lg shadow-white/5"
           >
-            Login
+            {loading ? 'Logging in...': 'Login'}
           </button>
         </form>
 
