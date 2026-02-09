@@ -3,7 +3,7 @@ import loginImg from '../assets/login.webp';
 import { useNavigate } from 'react-router-dom';
 
 
-const Signin = () => {
+const Login = () => {
 
   const navigate = useNavigate();
 
@@ -55,7 +55,7 @@ const Signin = () => {
             type="submit"
             className="w-full bg-white text-black font-bold py-4 rounded-full mt-4 active:scale-[0.98] hover:bg-zinc-200 transition-all shadow-lg shadow-white/5"
           >
-            Sign In
+            Login
           </button>
         </form>
 
@@ -63,9 +63,9 @@ const Signin = () => {
         <p className="mt-8 text-zinc-400 text-sm">
           Don't have an account? 
           <button className="ml-2 text-emerald-400 font-semibold hover:text-emerald-300 transition-colors"
-            onClick={()=>navigate('/signup')}
+            onClick={()=>navigate('/register')}
           >
-            Sign up
+            Register
           </button>
         </p>
       </div>
@@ -73,4 +73,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default Login;
