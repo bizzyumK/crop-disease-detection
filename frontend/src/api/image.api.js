@@ -1,6 +1,6 @@
 import api from "./axios";
 
-export const uploadImage = async (File, onProgress) => {
+export const uploadImage = async (file, onProgress) => {
   const formData = new FormData();
   formData.append("image", file);
 
@@ -20,3 +20,10 @@ export const uploadImage = async (File, onProgress) => {
 
   return response.data;
 };
+
+export const getImages = async()=>{
+  const res = await api.get('/images');
+  return res.data;
+};
+
+

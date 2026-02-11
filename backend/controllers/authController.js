@@ -58,7 +58,7 @@ exports.loginUser = async (req, res) => {
 
     res.status(200).json({
       id: user._id,
-      username: user.name,
+      username: user.username,
       email: user.email,
       token: generateToken(user._id),
     });
