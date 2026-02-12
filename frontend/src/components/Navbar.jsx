@@ -16,16 +16,16 @@ const Navbar = () => {
         
     
         <h1
-          className="text-2xl font-bold text-white cursor-pointer"
+          className="text-2xl font-bold text-white cursor-pointer hover:text-emerald-500 transition-colors"
           onClick={() => navigate("/dashboard")}
         >
-          GreenDADA
+          GreenBidu
         </h1>
 
         <div className="flex items-center gap-4">
           {user?.username && (
-            <p className="text-white font-semibold">
-              Hello, {user.username}
+            <p className="text-white font-semibold ">
+              Hello, {user.username}!
             </p>
           )}
 
