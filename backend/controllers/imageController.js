@@ -36,7 +36,7 @@ const uploadImage = async (req, res) => {
     form.append("file", fs.createReadStream(req.file.path));
 
     // Call FastAPI ML API
-    const response = await axios.post(process.env.FASTAPI_URL ||"http://127.0.0.1:8000/predict/", form, {
+    const response = await axios.post("http://127.0.0.1:8000/predict/", form, {
       headers: form.getHeaders(),
     });
 
