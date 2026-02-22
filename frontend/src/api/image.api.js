@@ -26,4 +26,8 @@ export const getImages = async()=>{
   return res.data;
 };
 
+export const deleteImage = async (id) => {
+  const res = await api.delete(`/images/${id}`);
+  return res.data;
+};
 
