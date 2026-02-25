@@ -12,7 +12,8 @@ const Dashboard = () => {
   const [error, setError] = useState(null);
   const [modalData, setModalData] = useState(null);
   const [modalLoading, setModalLoading] = useState(false);
-  const [toast, setToast] = useState(null); // { message, type }
+  const [toast, setToast] = useState(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
 
   const showToast = (message, type = "success") => {
@@ -35,6 +36,12 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetchImages();
+  }, []);
+
+  useEffect(() => {
+    const handler = () => setSidebarOpen((p) => !p);
+    window.addEventListener("toggle-sidebar", handler);
+    return () => window.removeEventListener("toggle-sidebar", handler);
   }, []);
 
   const handleImageClick = async (image) => {
@@ -73,7 +80,6 @@ const Dashboard = () => {
     </div>
   );
 
-  // Error state
   if (error) return (
     <div className="min-h-screen bg-[#0d140d] flex items-center justify-center">
       <div className="text-center">
@@ -91,14 +97,35 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-[#0d140d]">
       <div className="flex">
+
+        {/* Sidebar overlay (mobile) */}
+        {sidebarOpen && (
+          <div
+            className="md:hidden fixed top-[66px] inset-x-0 bottom-0 z-30 bg-black/60"
+            onClick={() => setSidebarOpen(false)}
+          />
+        )}
+
         {/* Sidebar */}
-        <div className="w-64 bg-white/5 border-r border-white/10 p-6 min-h-[calc(100vh-73px)]">
+        <div className={`
+          fixed md:static top-[66px] md:top-auto bottom-0 left-0 z-40
+          w-64 bg-[#0d140d] md:bg-white/5
+          border-r border-white/10
+          p-6
+          md:min-h-[calc(100vh-73px)]
+          overflow-y-auto
+          transition-transform duration-300
+          ${sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
+        `}>
           <nav className="space-y-2">
-            <button className="w-full text-left px-4 py-3 rounded-xl bg-emerald-500 text-white font-semibold">
+            <button
+              onClick={() => { navigate('/dashboard'); setSidebarOpen(false); }}
+              className="w-full text-left px-4 py-3 rounded-xl bg-emerald-500 text-white font-semibold"
+            >
               Dashboard
             </button>
             <button
-              onClick={() => navigate('/upload')}
+              onClick={() => { navigate('/upload'); setSidebarOpen(false); }}
               className="w-full text-left px-4 py-3 rounded-xl text-zinc-400 hover:bg-white/5 transition-all"
             >
               Upload Image
@@ -107,7 +134,7 @@ const Dashboard = () => {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 p-8">
+        <div className="flex-1 p-4 md:p-8">
           <h3 className="text-2xl font-bold text-white mb-4">Recent Uploads</h3>
 
           {modalLoading && (
@@ -120,7 +147,7 @@ const Dashboard = () => {
               <p className="text-zinc-500 text-sm mt-2">Upload your first crop image to get started</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {images.map((img) => (
                 <ImageCard
                   key={img._id}
@@ -130,8 +157,6 @@ const Dashboard = () => {
                 />
               ))}
             </div>
-
-            
           )}
         </div>
       </div>

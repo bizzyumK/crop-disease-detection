@@ -1,26 +1,23 @@
 import { useState } from "react";
-import { STATUS } from "../utils/constants";
 
 const ImageCard = ({ image, onClick, onDelete }) => {
   const [confirming, setConfirming] = useState(false);
   const [deleting, setDeleting] = useState(false);
 
-  const getStatusColor = () => {
+  const getStatusStyle = () => {
     const disease = image.diseaseDetected?.toLowerCase();
-    if (disease === STATUS.HEALTHY) return "bg-green-500";
-    if (disease === STATUS.PENDING) return "bg-yellow-600";
-    return "bg-red-500";
+    if (!disease || disease === "pending") return { backgroundColor: "#ca8a04" };
+    return disease.includes("healthy") ? { backgroundColor: "#22c55e" } : { backgroundColor: "#ef4444" };
   };
 
   const getStatusLabel = () => {
     const disease = image.diseaseDetected?.toLowerCase();
-    if (disease === STATUS.HEALTHY) return "Healthy";
-    if (disease === STATUS.PENDING) return "Analyzing...";
+    if (!disease || disease === "pending") return "Analyzing...";
     return image.diseaseDetected;
   };
 
   const handleDelete = async (e) => {
-    e.stopPropagation(); // don't open modal
+    e.stopPropagation();
     if (!confirming) {
       setConfirming(true);
       return;
@@ -56,7 +53,10 @@ const ImageCard = ({ image, onClick, onDelete }) => {
         <p className="text-sm text-gray-400">
           {new Date(image.createdAt).toLocaleDateString()}
         </p>
-        <span className={`px-3 py-1 text-xs text-white rounded-full ${getStatusColor()}`}>
+        <span
+          className="px-3 py-1 text-xs text-white rounded-full"
+          style={getStatusStyle()}
+        >
           {getStatusLabel()}
         </span>
       </div>
