@@ -46,21 +46,6 @@ const Dashboard = () => {
 
   const handleImageClick = async (image) => {
     if (!image.diseaseDetected || image.diseaseDetected.toLowerCase() === "pending") return;
-
-    // Low confidence — show default/unknown advice without calling API
-    if (!image.confidence || image.confidence < 40) {
-      setModalData({
-        disease: "Unknown",
-        description: "The confidence level is too low to make a reliable diagnosis. Please upload a clearer image for better results.",
-        treatment: "No specific treatment recommended. Consult an agronomist for manual inspection.",
-        prevention: "Ensure good image quality — proper lighting, focus, and minimal background noise.",
-        imageUrl: image.imageUrl,
-        confidence: image.confidence,
-        createdAt: image.createdAt,
-      });
-      return;
-    }
-
     setModalLoading(true);
     try {
       const advisory = await getAdvisory(image.diseaseDetected);
