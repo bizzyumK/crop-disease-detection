@@ -6,7 +6,7 @@ const FormData = require("form-data");
 const getImages = async (req, res) => {
   try {
     const userId = req.user.id;
-    const images = await Image.find({ user: userId });
+    const images = await Image.find({ farmer: userId });
     return res.status(200).json(images);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -26,7 +26,7 @@ const uploadImage = async (req, res) => {
 
     // Store data in DB with temporary diseaseDetected
     let image = await Image.create({
-      user: userId,
+      farmer: userId,
       imageUrl: req.file.path,
       diseaseDetected: "pending",
     });
