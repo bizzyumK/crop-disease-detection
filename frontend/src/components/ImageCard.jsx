@@ -1,46 +1,107 @@
-import cropImg from "../assets/login.webp"; // fallback if image fails
+import { useState } from "react";
 
-const ImageCard = ({ image, onDelete, onViewAdvice }) => {
-  // Construct full URL for backend images
-  const imageUrl = image.imageUrl
-    ? `http://localhost:5000${image.imageUrl}`
-    : cropImg;
+const ImageCard = ({ image, onClick, onDelete }) => {
+  const [confirming, setConfirming] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+
+  const getStatusStyle = () => {
+    const disease = image.diseaseDetected?.toLowerCase();
+    if (!disease || disease === "pending") return { backgroundColor: "#ca8a04" };
+    return disease.includes("healthy") ? { backgroundColor: "#22c55e" } : { backgroundColor: "#ef4444" };
+  };
+
+  const getStatusLabel = () => {
+    const disease = image.diseaseDetected?.toLowerCase();
+    if (!disease || disease === "pending") return "Analyzing...";
+    return image.diseaseDetected;
+  };
+
+  const handleDelete = async (e) => {
+    e.stopPropagation();
+    if (!confirming) {
+      setConfirming(true);
+      return;
+    }
+    setDeleting(true);
+    try {
+      await onDelete(image._id);
+    } catch (err) {
+      console.error("Delete failed", err);
+    } finally {
+      setDeleting(false);
+      setConfirming(false);
+    }
+  };
+
+  const handleCancelDelete = (e) => {
+    e.stopPropagation();
+    setConfirming(false);
+  };
 
   return (
-    <div className="bg-white/5 border border-white/10 rounded-3xl p-5 backdrop-blur-xl hover:scale-[1.02] transition-transform">
+    <div
+      onClick={() => onClick?.(image)}
+      className="bg-white/5 p-4 rounded-2xl shadow-lg hover:bg-white/10 transition-all cursor-pointer relative"
+    >
       <img
-        src={imageUrl}
+        src={`${import.meta.env.VITE_SERVER_URL}/${image.imageUrl}`}
         alt="crop"
-        className="w-full h-52 object-cover rounded-2xl mb-4"
+        className="w-full h-48 object-cover rounded-xl mb-4"
       />
-      <div className="flex justify-between items-center mb-4">
-        <span className="text-sm text-zinc-400">Status</span>
+
+      <div className="flex justify-between items-center">
+        <p className="text-sm text-gray-400">
+          {new Date(image.createdAt).toLocaleDateString()}
+        </p>
         <span
-          className={`px-4 py-1 rounded-full text-sm font-semibold ${
-            image.diseaseDetected === "pending"
-              ? "bg-yellow-500/20 text-yellow-400"
-              : image.diseaseDetected === "Healthy"
-              ? "bg-green-500/20 text-green-400"
-              : "bg-red-500/20 text-red-400"
-          }`}
+          className="px-3 py-1 text-xs text-white rounded-full"
+          style={getStatusStyle()}
         >
-          {image.diseaseDetected}
+          {getStatusLabel()}
         </span>
       </div>
 
-      <div className="flex gap-3">
-        <button
-          onClick={() => onViewAdvice(image.diseaseDetected)}
-          className="flex-1 bg-emerald-500/20 text-emerald-400 font-semibold py-2 rounded-full hover:bg-emerald-500/30 transition"
-        >
-          View Advice
-        </button>
-        <button
-          onClick={() => onDelete(image._id)}
-          className="flex-1 bg-red-500/20 text-red-400 font-semibold py-2 rounded-full hover:bg-red-500/30 transition"
-        >
-          Delete
-        </button>
+      {image.confidence && (
+        <div className="mt-3">
+          <div className="flex justify-between text-xs text-zinc-500 mb-1">
+            <span>Confidence</span>
+            <span>{Math.round(image.confidence)}%</span>
+          </div>
+          <div className="w-full bg-white/10 rounded-full h-1.5">
+            <div
+              className="bg-emerald-500 h-1.5 rounded-full transition-all"
+              style={{ width: `${image.confidence}%` }}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Delete */}
+      <div className="mt-3 flex gap-2" onClick={(e) => e.stopPropagation()}>
+        {confirming ? (
+          <>
+            <button
+              onClick={handleDelete}
+              disabled={deleting}
+              className="flex-1 py-1.5 text-xs bg-red-600 hover:bg-red-700 text-white rounded-lg transition-all"
+            >
+              {deleting ? "Deleting..." : "Confirm"}
+            </button>
+            <button
+              onClick={handleCancelDelete}
+              className="flex-1 py-1.5 text-xs bg-white/10 hover:bg-white/20 text-zinc-300 rounded-lg transition-all"
+            >
+              Cancel
+            </button>
+          </>
+        ) : (
+          <button
+            onClick={handleDelete}
+            className="w-full py-1.5 text-xs bg-white/5 hover:bg-red-600/20 text-zinc-400 hover:text-red-400 rounded-lg transition-all"
+          >
+            Delete
+          </button>
+        )}
       </div>
     </div>
   );

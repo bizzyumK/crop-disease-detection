@@ -1,16 +1,11 @@
-import axios from 'axios';
+import api from './axios';
 
-const api = axios.create({
-  baseURL: 'http://localhost:5000/api',
-});
+export const loginUser = async(data) =>{
+  const response = await api.post('/auth/login',data);
+  return response.data;
+}
 
-// attach token automatically
-api.interceptors.request.use((req) => {
-  const token = localStorage.getItem('token');
-  if (token) {
-    req.headers.Authorization = `Bearer ${token}`;
-  }
-  return req;
-});
-
-export default api;
+export const registerUser = async (data) =>{
+  const response = await api.post('/auth/register',data);
+  return response.data;
+}

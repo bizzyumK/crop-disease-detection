@@ -3,49 +3,42 @@ const bcrypt = require('bcryptjs');
 
 const UserSchema = new mongoose.Schema(
   {
-    username:{
+    username: {
       type: String,
-      required:[true,'Username is required'],
+      required: [true, 'Username is required'],
+      unique: true,
       minlength: 3,
-      trim:true,
+      trim: true,
     },
-
-    email:{
-      type:String,
-      required:[true,'Email is required'],
-      trim:true,
-      match: [/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, "Please enter a valid email"],
-      unique:true,
+    email: {
+      type: String,
+      required: [true, 'Email is required'],
+      trim: true,
+      match: [/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/, "Please enter a valid email"],
+      unique: true,
     },
-
-    password:{
-      type:String,
-      required:[true,'Password is required!'],
-      match:[/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/,
-      "Password must be 8+ chars, with uppercase, lowercase, number & special char"]
+    password: {
+      type: String,
+      required: [true, 'Password is required!'],
+      match: [/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/, "Password must be 8+ chars, with uppercase, lowercase, number & special char"]
     },
-  }
-  ,{timestamps:true}
+  },
+  { timestamps: true }
 );
 
-
-
-//hashing before saving
-UserSchema.pre("save",async function(){
-
-  if(!this.isModified("password")){
-    return;
+// Hashing before saving - REMOVE next() when using async
+UserSchema.pre("save", async function() {
+  if (!this.isModified("password")) {
+    return; // Just return, no next()
   }
-
   const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password,salt);
-
+  this.password = await bcrypt.hash(this.password, salt);
+  // No next() needed with async functions
 });
 
-//if not modified compare pwd for login
-
-UserSchema.methods.matchPassword = async function(enteredPwd){
+// Compare password for login
+UserSchema.methods.matchPassword = async function(enteredPwd) {
   return await bcrypt.compare(enteredPwd, this.password);
 };
 
-module.exports = mongoose.model("User",UserSchema);
+module.exports = mongoose.model("User", UserSchema);

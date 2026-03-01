@@ -2,17 +2,19 @@ const Image = require('../models/Images.js');
 const fs = require('fs');
 const path = require('path');
 
+// Get all images for logged-in farmer
 const getImages = async (req, res) => {
   try {
     const images = await Image.find({ farmer: req.user._id })
       .sort({ createdAt: -1 });
 
-    res.status(200).json(images);
+    return res.status(200).json(images);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    return res.status(500).json({ error: error.message });
   }
 };
 
+// Upload image
 const uploadImage = async (req, res) => {
   try {
     if (!req.file) {
@@ -25,16 +27,17 @@ const uploadImage = async (req, res) => {
       diseaseDetected: 'pending'
     });
 
-    res.status(201).json({
+    return res.status(201).json({
       message: 'Image uploaded successfully!',
       image
     });
 
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    return res.status(500).json({ error: error.message });
   }
 };
 
+// Delete image
 const deleteImage = async (req, res) => {
   try {
     const image = await Image.findById(req.params.id);
@@ -43,27 +46,33 @@ const deleteImage = async (req, res) => {
       return res.status(404).json({ message: 'Image not found!' });
     }
 
-    if (image.farmer.toString() !== req.user._id.toString()) {
+    // Check ownership
+    if (image.farmer.toString() !== req.farmer._id.toString()) {
       return res.status(401).json({ message: 'Not authorized!' });
     }
 
+    // Build correct file path
     const filePath = path.join(__dirname, '..', image.imageUrl);
 
+    // Delete physical file
     fs.unlink(filePath, (err) => {
-      if (err) console.error('File delete error:', err);
+      if (err) {
+        console.error('File delete error:', err);
+      }
     });
 
     await image.deleteOne();
+    res.status(200).json({message:'Image deleted successfully! '});
 
-    res.status(200).json({ message: 'Image deleted successfully!' });
+    return res.status(200).json({ message: 'Image deleted successfully!' });
 
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
   }
 };
 
 module.exports = {
   getImages,
   uploadImage,
-  deleteImage
+  deleteImage,
 };
